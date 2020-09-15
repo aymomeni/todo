@@ -17,3 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// List todos
+Route::get('todos', 'App\Http\Controllers\TodoController@index');
+
+// List single article
+Route::get('todo/{id}', 'App\Http\Controllers\TodoController@show');
+
+// Create new article
+Route::post('todo', 'App\Http\Controllers\TodoController@store');
+
+// Update article
+Route::put('todos', 'App\Http\Controllers\TodoController@store');
+
+// Delete article
+Route::delete('todos', 'App\Http\Controllers\TodoController@destroy');

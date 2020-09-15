@@ -22,14 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // List todos
 Route::get('todos', 'App\Http\Controllers\TodoController@index');
 
-// List single article
+// List single todos
 Route::get('todo/{id}', 'App\Http\Controllers\TodoController@show');
 
-// Create new article
+// Create new todos
 Route::post('todo', 'App\Http\Controllers\TodoController@store');
 
-// Update article
+// Update todos
 Route::put('todo', 'App\Http\Controllers\TodoController@store');
 
-// Delete article
+// Delete todos
 Route::delete('todo/{id}', 'App\Http\Controllers\TodoController@destroy');

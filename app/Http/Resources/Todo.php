@@ -14,6 +14,21 @@ class Todo extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'body' => $this->body
+        ];
     }
+
+    // can add custom json elements and formats to what is returned
+    // public function with($request)
+    // {
+    //     return [
+    //         'version' => '1.0.0',
+    //         'author_url' => url("http://traversymedia.com")
+    //     ];
+    // }
 }

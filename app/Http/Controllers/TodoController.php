@@ -31,7 +31,16 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = $request->isMethod('put') ? Todo::findOrFail
+        ($request->todo_id) : new Todo;
+
+        $todo->id = $request->input('todo_id');
+        $todo->title = $request->input('title');
+        $todo->body = $request->input('body');
+
+        if($todo->save()) {
+            return new TodoResource($todo);
+        }
     }
 
     /**
@@ -42,7 +51,11 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get a single Todo
+        $todo = Todo::findOrFail($id);
+
+        // Return single article as a resource
+        return new TodoResource($todo);
     }
 
     /**
@@ -53,6 +66,11 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Get todo
+        $todo = Todo::findOrFail($id);
+
+        if($todo->delete()) {
+            return new TodoResource($todo);
+        }
     }
 }

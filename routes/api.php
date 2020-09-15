@@ -29,7 +29,7 @@ Route::get('todo/{id}', 'App\Http\Controllers\TodoController@show');
 Route::post('todo', 'App\Http\Controllers\TodoController@store');
 
 // Update article
-Route::put('todos', 'App\Http\Controllers\TodoController@store');
+Route::put('todo', 'App\Http\Controllers\TodoController@store');
 
 // Delete article
-Route::delete('todos', 'App\Http\Controllers\TodoController@destroy');
+Route::delete('todo/{id}', 'App\Http\Controllers\TodoController@destroy');

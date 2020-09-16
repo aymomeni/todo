@@ -26,10 +26,7 @@
     </head>
     <body>
         <div id="app">
-            <navbar-component></navbar-component>
-            <div class="container">
-                <my-todos-view></my-todos-view>
-            </div>
+            <my-todos-view></my-todos-view>
         </div>
 
             <!-- Bootstrap Dependencies -->

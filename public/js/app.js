@@ -1947,6 +1947,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1987,6 +2008,23 @@ __webpack_require__.r(__webpack_exports__);
         prev_page_url: links.prev
       };
       this.pagination = pagination;
+    },
+    deleteTodos: function deleteTodos(id) {
+      var _this2 = this;
+
+      if (confirm("Are you sure you want to delete this task?")) {
+        fetch("/api/todo/".concat(id), {
+          method: 'delete'
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          alert('Todo task has been removed');
+
+          _this2.fetchTodos();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
     }
   },
   mounted: function mounted() {
@@ -37651,13 +37689,119 @@ var render = function() {
                           _c("p", [_vm._v(" " + _vm._s(todo.body))])
                         ]),
                         _vm._v(" "),
-                        _vm._m(1, true)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "col-sm-2",
+                            staticStyle: { opacity: "0.85" }
+                          },
+                          [
+                            _vm._m(1, true),
+                            _vm._v(" "),
+                            _vm._m(2, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row pr-3" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "col-sm mb-1 btn btn-danger",
+                                  staticStyle: { height: "2.2rem" },
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteTodos(todo.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-times",
+                                    attrs: { "aria-hidden": "true" }
+                                  })
+                                ]
+                              )
+                            ])
+                          ]
+                        )
                       ])
                     ]
                   )
                 ]
               )
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "nav",
+              {
+                staticClass: "ml-2 mt-3",
+                attrs: { "aria-label": "Page navigation" }
+              },
+              [
+                _c("ul", { staticClass: "pagination" }, [
+                  _c(
+                    "li",
+                    {
+                      staticClass: "page-item",
+                      class: [{ disabled: !_vm.pagination.prev_page_url }]
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#", "aria-label": "Previous" },
+                          on: {
+                            click: function($event) {
+                              return _vm.fetchTodos(
+                                _vm.pagination.prev_page_url
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("«")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Previous")])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      staticClass: "page-item",
+                      class: [{ disabled: !_vm.pagination.next_page_url }]
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#", "aria-label": "Next" },
+                          on: {
+                            click: function($event) {
+                              return _vm.fetchTodos(
+                                _vm.pagination.next_page_url
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("span", [_vm._v("Next")]),
+                          _vm._v(" "),
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("»")
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
           ],
           2
         )
@@ -37689,62 +37833,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-sm-2", staticStyle: { opacity: "0.85" } },
-      [
-        _c("div", { staticClass: "row pr-3" }, [
-          _c(
-            "button",
-            {
-              staticClass: "col-sm mb-1 btn btn-secondary",
-              staticStyle: { height: "2.2rem" },
-              attrs: { type: "button" }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-pencil-square-o",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row pr-3" }, [
-          _c(
-            "button",
-            {
-              staticClass: "col-sm mb-1 btn btn-success",
-              staticStyle: { height: "2.2rem" },
-              attrs: { type: "button" }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-check",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row pr-3" }, [
-          _c(
-            "button",
-            {
-              staticClass: "col-sm mb-1 btn btn-danger",
-              staticStyle: { height: "2.2rem" },
-              attrs: { type: "button" }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-times",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "row pr-3" }, [
+      _c(
+        "button",
+        {
+          staticClass: "col-sm mb-1 btn btn-secondary",
+          staticStyle: { height: "2.2rem" },
+          attrs: { type: "button" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-pencil-square-o",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pr-3" }, [
+      _c(
+        "button",
+        {
+          staticClass: "col-sm mb-1 btn btn-success",
+          staticStyle: { height: "2.2rem" },
+          attrs: { type: "button" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-check",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true

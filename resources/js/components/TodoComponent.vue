@@ -15,18 +15,39 @@
                                 </div>
                                 <div class="col-sm-2" style="opacity: 0.85;">
                                     <div class="row pr-3">
-                                        <button type="button" class="col-sm mb-1 btn btn-secondary" style="height: 2.2rem;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button type="button" class="col-sm mb-1 btn btn-secondary" style="height: 2.2rem;">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                     </div>
                                     <div class="row pr-3">
-                                        <button type="button" class="col-sm mb-1 btn btn-success" style="height: 2.2rem;"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                        <button type="button" class="col-sm mb-1 btn btn-success" style="height: 2.2rem;">
+                                            <i class="fa fa-check" aria-hidden="true"></i></button>
                                     </div>
                                     <div class="row pr-3">
-                                        <button type="button" class="col-sm mb-1 btn btn-danger" style="height: 2.2rem;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        <button @click="deleteTodos(todo.id)" type="button" class="col-sm mb-1 btn btn-danger" style="height: 2.2rem;">
+                                            <i class="fa fa-times" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </div>
+                    <nav class="ml-2 mt-3" aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous"
+                                    @click="fetchTodos(pagination.prev_page_url)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span>Previous</span>
+                                </a>
+                            </li>
+                            <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                                <a class="page-link" href="#" aria-label="Next"
+                                    @click="fetchTodos(pagination.next_page_url)">
+                                    <span>Next</span>
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <div class="col-4">
@@ -76,6 +97,19 @@
                 }
 
                 this.pagination = pagination;
+            },
+            deleteTodos(id) {
+                if(confirm("Are you sure you want to delete this task?")) {
+                    fetch(`/api/todo/${id}`, {
+                        method: 'delete'
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        alert('Todo task has been removed');
+                        this.fetchTodos();
+                    })
+                    .catch(err => console.log(err));
+                }
             }
         },
         mounted() {

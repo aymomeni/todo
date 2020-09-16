@@ -5,11 +5,17 @@
         </div>
     </nav>
 </template>
+
 <script>
-    export default {}
+    export default {
+        data () {
+            return {}
+        }
+    }
 </script>
+
 <style scoped>
-#font-awesome-icon {
-    color: green;
-}
+    #font-awesome-icon {
+        color: green;
+    }
 </style>

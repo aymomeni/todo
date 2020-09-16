@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
-Vue.component('todo-component', require('./components/TodoComponent.vue').default);
+Vue.component('MyTodosView', require('./views/MyTodosView.vue').default);
 
 
 /**

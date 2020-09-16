@@ -7,39 +7,22 @@
                         <h4><i class="fa fa-check-square" aria-hidden="true" style="color:orange"></i> Daily</h4>
                     </div>
                     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
-                        <li class="list-group-item" style="padding: .5rem .5rem !important; min-height: 180px;">
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <h4>{{ todo.title }}</h4>
-                                    <p> {{ todo.body }}</p>
-                                </div>
-                                <div class="col-sm-2" style="opacity: 0.85;">
-                                    <div class="row pr-3">
-                                        <button type="button" class="col-sm mb-1 btn btn-secondary" style="height: 2.2rem;">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </div>
-                                    <div class="row pr-3">
-                                        <button type="button" class="col-sm mb-1 btn btn-success" style="height: 2.2rem;">
-                                            <i class="fa fa-check" aria-hidden="true"></i></button>
-                                    </div>
-                                    <div class="row pr-3">
-                                        <button @click="deleteTodos(todo.id)" type="button" class="col-sm mb-1 btn btn-danger" style="height: 2.2rem;">
-                                            <i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        <IndividualTaskComponent 
+                            @deleteTodos="deleteTodos" 
+                            :todo="todo" 
+                        />
                     </div>
+                    
                     <nav class="ml-2 mt-3" aria-label="Page navigation">
                         <ul class="pagination">
-                            <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
+                            <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
                                 <a class="page-link" href="#" aria-label="Previous"
                                     @click="fetchTodos(pagination.prev_page_url)">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span>Previous</span>
                                 </a>
                             </li>
-                            <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                            <li class="page-item" v-bind:class="[{disabled: !pagination.next_page_url}]">
                                 <a class="page-link" href="#" aria-label="Next"
                                     @click="fetchTodos(pagination.next_page_url)">
                                     <span>Next</span>
@@ -59,7 +42,12 @@
 </template>
 
 <script>
+    import IndividualTaskComponent from '../components/IndividualTaskComponent';
+
     export default {
+        components: {
+            IndividualTaskComponent
+        },
         data() {
             return {
                 todos: [],
@@ -111,9 +99,6 @@
                     .catch(err => console.log(err));
                 }
             }
-        },
-        mounted() {
-            console.log('Component mounted.')
         }
     }
 </script>

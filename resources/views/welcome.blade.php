@@ -28,7 +28,7 @@
         <div id="app">
             <navbar-component></navbar-component>
             <div class="container">
-                <todo-component></todo-component>
+                <my-todos-view></my-todos-view>
             </div>
         </div>
 

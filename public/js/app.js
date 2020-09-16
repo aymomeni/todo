@@ -1937,6 +1937,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1955,15 +1965,28 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchTodos();
   },
   methods: {
-    fetchTodos: function fetchTodos() {
+    fetchTodos: function fetchTodos(page_url) {
       var _this = this;
 
-      fetch('api/todos').then(function (res) {
+      var vm = this;
+      page_url = page_url || '/api/todos';
+      fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (res) {
-        console.log(res.data);
         _this.todos = res.data;
+        vm.makePagination(res.meta, res.links);
+      })["catch"](function (err) {
+        return console.log(err);
       });
+    },
+    makePagination: function makePagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
+      this.pagination = pagination;
     }
   },
   mounted: function mounted() {
@@ -37597,12 +37620,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-4" }, [
+  return _c("div", { staticClass: "mt-4" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm" }, [
+      _c("div", { staticClass: "col-4" }, [
         _c(
           "div",
-          { staticClass: "card", staticStyle: { height: "900px" } },
+          { staticClass: "card shadow bg-white rounded" },
           [
             _vm._m(0),
             _vm._v(" "),
@@ -37611,13 +37634,27 @@ var render = function() {
                 "div",
                 { key: todo.id, staticClass: "list-group list-group-flush" },
                 [
-                  _c("li", { staticClass: "list-group-item" }, [
-                    _c("h5", [_vm._v(_vm._s(todo.title))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(" " + _vm._s(todo.body) + " ")]),
-                    _vm._v(" "),
-                    _vm._m(1, true)
-                  ])
+                  _c(
+                    "li",
+                    {
+                      staticClass: "list-group-item",
+                      staticStyle: {
+                        padding: ".5rem .5rem !important",
+                        "min-height": "180px"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-sm-10" }, [
+                          _c("h4", [_vm._v(_vm._s(todo.title))]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(" " + _vm._s(todo.body))])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1, true)
+                      ])
+                    ]
+                  )
                 ]
               )
             })
@@ -37626,9 +37663,9 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm" }),
+      _c("div", { staticClass: "col-4" }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm" })
+      _c("div", { staticClass: "col-4" })
     ])
   ])
 }
@@ -37652,52 +37689,62 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "button",
-        {
-          staticClass: "col-sm m-1 btn btn-secondary",
-          staticStyle: { height: "2.2rem" },
-          attrs: { type: "button" }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-pencil-square-o",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "col-sm m-1 btn btn-success",
-          staticStyle: { height: "2.2rem" },
-          attrs: { type: "button" }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-check",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "col-sm m-1 btn btn-danger",
-          staticStyle: { height: "2.2rem" },
-          attrs: { type: "button" }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-times",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-sm-2", staticStyle: { opacity: "0.85" } },
+      [
+        _c("div", { staticClass: "row pr-3" }, [
+          _c(
+            "button",
+            {
+              staticClass: "col-sm mb-1 btn btn-secondary",
+              staticStyle: { height: "2.2rem" },
+              attrs: { type: "button" }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-pencil-square-o",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row pr-3" }, [
+          _c(
+            "button",
+            {
+              staticClass: "col-sm mb-1 btn btn-success",
+              staticStyle: { height: "2.2rem" },
+              attrs: { type: "button" }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-check",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row pr-3" }, [
+          _c(
+            "button",
+            {
+              staticClass: "col-sm mb-1 btn btn-danger",
+              staticStyle: { height: "2.2rem" },
+              attrs: { type: "button" }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-times",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

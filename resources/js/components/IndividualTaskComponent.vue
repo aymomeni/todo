@@ -2,9 +2,9 @@
     <div>
         <li class="list-group-item list-item">
             <div class="row">
-                <div class="col-sm-10">
-                    <h4>{{ todo.title }}</h4>
-                    <p>{{ todo.body }}</p>
+                <div class="col-sm-10 tite-body-style">
+                    <h4 v-bind:class="{'crossed-out': todo.completed}">{{ todo.title }}</h4>
+                    <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
                 </div>
                 <div class="col-sm-2">
                     <div class="row pr-3">
@@ -17,7 +17,11 @@
                         </button>
                     </div>
                     <div class="row pr-3">
-                        <button type="button" class="col-sm mb-1 btn btn-success">
+                        <button 
+                        @click="sendEditTodoCompletedToParent(todo) && !todo.completed"
+                        type="button" 
+                        class="col-sm mb-1 btn btn-success" 
+                        v-bind:class="{'disabled': todo.completed}">
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -54,6 +58,11 @@
                 console.log("sendEditTodoToParent");
                 this.$emit('editTodo', todo);
             },
+            sendEditTodoCompletedToParent(todo) {
+                console.log("sendEditTodoCompletedToParent");
+                todo.completed = true;
+                this.$emit('completedTodo', todo);
+            },
             sendDeleteTodoToParent(id) {
                 console.log("sendDeleteTodoToParent");
                 this.$emit('deleteTodo', id);
@@ -70,6 +79,10 @@
 
 .button-styles {
     height: 2.2 rem;
-    opacity: 0.85;
+    opacity: 1;
+}
+
+.crossed-out {
+    text-decoration:line-through !important;
 }
 </style>

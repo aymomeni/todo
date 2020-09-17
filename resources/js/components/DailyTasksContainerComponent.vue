@@ -17,7 +17,8 @@
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
       <IndividualTaskComponent 
         @deleteTodo="deleteTodo"
-        @editTodo="editTodo" 
+        @editTodo="editTodo"
+        @completedTodo="completedTodo"
         :todo="todo" />
     </div>
     <PaginationComponent 
@@ -147,6 +148,25 @@ export default {
       this.todo.completed = todo.completed;
       this.todo.effort = todo.effort;
       this.todo.priority = todo.priority;
+    },
+    completedTodo(todo) {
+      console.log("completed todo called");
+      this.edit = true;
+      todo.todo_id = todo.id;
+
+      // update
+      fetch('api/todo', {
+        method: 'put',
+        body: JSON.stringify(todo),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.fetchTodos();
+        })
+        .catch(err => console.log(err));
     }
   },
 };

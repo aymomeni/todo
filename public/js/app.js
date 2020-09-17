@@ -1938,6 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2067,6 +2068,27 @@ __webpack_require__.r(__webpack_exports__);
       this.todo.completed = todo.completed;
       this.todo.effort = todo.effort;
       this.todo.priority = todo.priority;
+    },
+    completedTodo: function completedTodo(todo) {
+      var _this4 = this;
+
+      console.log("completed todo called");
+      this.edit = true;
+      todo.todo_id = todo.id; // update
+
+      fetch('api/todo', {
+        method: 'put',
+        body: JSON.stringify(todo),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this4.fetchTodos();
+      })["catch"](function (err) {
+        return console.log(err);
+      });
     }
   }
 });
@@ -2082,6 +2104,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2136,6 +2162,11 @@ __webpack_require__.r(__webpack_exports__);
     sendEditTodoToParent: function sendEditTodoToParent(todo) {
       console.log("sendEditTodoToParent");
       this.$emit('editTodo', todo);
+    },
+    sendEditTodoCompletedToParent: function sendEditTodoCompletedToParent(todo) {
+      console.log("sendEditTodoCompletedToParent");
+      todo.completed = true;
+      this.$emit('completedTodo', todo);
     },
     sendDeleteTodoToParent: function sendDeleteTodoToParent(id) {
       console.log("sendDeleteTodoToParent");
@@ -6723,7 +6754,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.button-styles[data-v-7b1e22c4] {\r\n    height: 2.2 rem;\r\n    opacity: 0.85;\n}\r\n", ""]);
+exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.button-styles[data-v-7b1e22c4] {\r\n    height: 2.2 rem;\r\n    opacity: 1;\n}\n.crossed-out[data-v-7b1e22c4] {\r\n    text-decoration:line-through !important;\n}\r\n", ""]);
 
 // exports
 
@@ -38679,7 +38710,11 @@ var render = function() {
           [
             _c("IndividualTaskComponent", {
               attrs: { todo: todo },
-              on: { deleteTodo: _vm.deleteTodo, editTodo: _vm.editTodo }
+              on: {
+                deleteTodo: _vm.deleteTodo,
+                editTodo: _vm.editTodo,
+                completedTodo: _vm.completedTodo
+              }
             })
           ],
           1
@@ -38734,10 +38769,14 @@ var render = function() {
   return _c("div", [
     _c("li", { staticClass: "list-group-item list-item" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-10" }, [
-          _c("h4", [_vm._v(_vm._s(_vm.todo.title))]),
+        _c("div", { staticClass: "col-sm-10 tite-body-style" }, [
+          _c("h4", { class: { "crossed-out": _vm.todo.completed } }, [
+            _vm._v(_vm._s(_vm.todo.title))
+          ]),
           _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.todo.body))])
+          _c("p", { class: { "crossed-out": _vm.todo.completed } }, [
+            _vm._v(_vm._s(_vm.todo.body))
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-2" }, [
@@ -38762,7 +38801,28 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "row pr-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "col-sm mb-1 btn btn-success",
+                class: { disabled: _vm.todo.completed },
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    _vm.sendEditTodoCompletedToParent(_vm.todo) &&
+                      !_vm.todo.completed
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-check",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row pr-3" }, [
             _c(
@@ -38789,28 +38849,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row pr-3" }, [
-      _c(
-        "button",
-        {
-          staticClass: "col-sm mb-1 btn btn-success",
-          attrs: { type: "button" }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-check",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Goals;
+use App\Models\BookOrResource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class GoalsFactory extends Factory
+class BookOrResourceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Goals::class;
+    protected $model = BookOrResource::class;
 
     /**
      * Define the model's default state.

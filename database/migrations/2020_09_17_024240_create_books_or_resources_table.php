@@ -13,7 +13,7 @@ class CreateBooksOrResourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('books_or_resources', function (Blueprint $table) {
+        Schema::create('book_or_resources', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('body');
@@ -31,6 +31,6 @@ class CreateBooksOrResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books_or_resources');
+        Schema::dropIfExists('book_or_resource');
     }
 }

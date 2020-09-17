@@ -33,3 +33,35 @@ Route::put('todo', 'App\Http\Controllers\TodoController@store');
 
 // Delete todos
 Route::delete('todo/{id}', 'App\Http\Controllers\TodoController@destroy');
+
+
+// List goals
+Route::get('goals', 'App\Http\Controllers\GoalController@index');
+
+// List single goal
+Route::get('goal/{id}', 'App\Http\Controllers\GoalController@show');
+
+// Create new goal
+Route::post('goal', 'App\Http\Controllers\GoalController@store');
+
+// Update goal
+Route::put('goal', 'App\Http\Controllers\GoalController@store');
+
+// Delete goal
+Route::delete('goal/{id}', 'App\Http\Controllers\GoalController@destroy');
+
+
+// List books or resources
+Route::get('booksOrResources', 'App\Http\Controllers\BookOrResourceController@index');
+
+// List single goal
+Route::get('bookOrResource/{id}', 'App\Http\Controllers\BookOrResourceController@show');
+
+// Create new goal
+Route::post('bookOrResource', 'App\Http\Controllers\BookOrResourceController@store');
+
+// Update goal
+Route::put('bookOrResource', 'App\Http\Controllers\BookOrResourceController@store');
+
+// Delete goal
+Route::delete('bookOrResource/{id}', 'App\Http\Controllers\BookOrResourceController@destroy');

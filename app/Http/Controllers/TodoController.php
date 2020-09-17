@@ -37,6 +37,9 @@ class TodoController extends Controller
         $todo->id = $request->input('todo_id');
         $todo->title = $request->input('title');
         $todo->body = $request->input('body');
+        $todo->completed = $request->input('completed');
+        $todo->effort = $request->input('effort');
+        $todo->priority = $request->input('priority');
 
         if($todo->save()) {
             return new TodoResource($todo);
@@ -54,7 +57,7 @@ class TodoController extends Controller
         // Get a single Todo
         $todo = Todo::findOrFail($id);
 
-        // Return single article as a resource
+        // Return single todo as a resource
         return new TodoResource($todo);
     }
 

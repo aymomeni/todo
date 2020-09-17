@@ -16,7 +16,8 @@
     </form>
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
       <IndividualTaskComponent 
-        @deleteTodo="deleteTodo" 
+        @deleteTodo="deleteTodo"
+        @editTodo="editTodo" 
         :todo="todo" />
     </div>
     <PaginationComponent 
@@ -38,11 +39,14 @@ export default {
     return {
       todos: [],
       todo: {
-        title: "",
-        body: "",
-        id: ""
+        id: '',
+        title: '',
+        body: '',
+        completed: '',
+        effort: '',
+        priority: ''
       },
-      todo_id: "",
+      todo_id: '',
       pagination: {},
       edit: false,
     };
@@ -98,6 +102,9 @@ export default {
           .then(date => {
             this.todo.title = '';
             this.todo.body = '';
+            this.todo.completed = '';
+            this.todo.effort = '';
+            this.todo.priority = '';
             alert('todo added');
             this.fetchTodos();
         })
@@ -114,17 +121,24 @@ export default {
         .then(date => {
           this.todo.title = '';
           this.todo.body = '';
+          this.todo.completed = '';
+          this.todo.effort = '';
+          this.todo.priority = '';
           alert('todo edited');
           this.fetchTodos();
         })
       }
     },
     editTodo(todo) {
+      console.log("edit to do called");
       this.edit = true;
       this.todo.id = todo.id;
       this.todo.todo_id = todo.id;
       this.todo.title = todo.title;
       this.todo.body = todo.body;
+      this.todo.completed = todo.completed;
+      this.todo.effort = todo.effort;
+      this.todo.priority = todo.priority;
     }
   },
 };

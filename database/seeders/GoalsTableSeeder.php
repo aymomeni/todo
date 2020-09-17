@@ -13,6 +13,6 @@ class GoalsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Goals::factory()->count(30)->create(); 
+        \App\Models\Goal::factory()->count(30)->create(); 
     }
 }

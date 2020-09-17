@@ -1937,6 +1937,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1948,11 +1949,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       todos: [],
       todo: {
-        title: "",
-        body: "",
-        id: ""
+        id: '',
+        title: '',
+        body: '',
+        completed: '',
+        effort: '',
+        priority: ''
       },
-      todo_id: "",
+      todo_id: '',
       pagination: {},
       edit: false
     };
@@ -2017,6 +2021,9 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (date) {
           _this3.todo.title = '';
           _this3.todo.body = '';
+          _this3.todo.completed = '';
+          _this3.todo.effort = '';
+          _this3.todo.priority = '';
           alert('todo added');
 
           _this3.fetchTodos();
@@ -2034,6 +2041,9 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (date) {
           _this3.todo.title = '';
           _this3.todo.body = '';
+          _this3.todo.completed = '';
+          _this3.todo.effort = '';
+          _this3.todo.priority = '';
           alert('todo edited');
 
           _this3.fetchTodos();
@@ -2041,11 +2051,15 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     editTodo: function editTodo(todo) {
+      console.log("edit to do called");
       this.edit = true;
       this.todo.id = todo.id;
       this.todo.todo_id = todo.id;
       this.todo.title = todo.title;
       this.todo.body = todo.body;
+      this.todo.completed = todo.completed;
+      this.todo.effort = todo.effort;
+      this.todo.priority = todo.priority;
     }
   }
 });
@@ -2095,6 +2109,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     todo: {
@@ -2109,9 +2127,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendEditTodoToParent: function sendEditTodoToParent(todo) {
+      console.log("sendEditTodoToParent");
       this.$emit('editTodo', todo);
     },
     sendDeleteTodoToParent: function sendDeleteTodoToParent(id) {
+      console.log("sendDeleteTodoToParent");
       this.$emit('deleteTodo', id);
     }
   }
@@ -38652,7 +38672,7 @@ var render = function() {
           [
             _c("IndividualTaskComponent", {
               attrs: { todo: todo },
-              on: { deleteTodo: _vm.deleteTodo }
+              on: { deleteTodo: _vm.deleteTodo, editTodo: _vm.editTodo }
             })
           ],
           1

@@ -13,6 +13,6 @@ class BooksOrResourcesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\BooksOrResources::factory()->count(30)->create(); 
+        \App\Models\BookOrResource::factory()->count(30)->create(); 
     }
 }

@@ -1,9 +1,7 @@
 <template>
   <div class="card shadow bg-white rounded">
     <div class="card-header">
-      <h4>
-        <i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> Daily
-      </h4>
+      <h4><i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> Daily Tasks</h4>
     </div>
     <form @submit.prevent="addTodo" class="mb-3 p-2">
       <div class="form-group"> 
@@ -90,8 +88,8 @@ export default {
     addTodo() {
       if(this.edit === false) {
 
-        // if completed or any other fields are empty fill
-        // TODO: this must be changed
+        // below are dummy values attempted effort and priority
+        // but ran out of time (will be added in the future)
         this.todo.completed = 0;
         this.todo.effort = 10;
         this.todo.priority = 1;
@@ -153,7 +151,6 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
-          // nothing else needs to be done
           alert("Good job for completing your Task!")
         })
         .catch(err => console.log(err));

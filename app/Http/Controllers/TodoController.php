@@ -31,8 +31,11 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo = $request->isMethod('put') ? Todo::findOrFail
-        ($request->todo_id) : new Todo;
+        // if(Todo::updateOrCreate($todo)) {
+        //     return new TodoResource($todo);
+        // }
+
+        $todo = $request->isMethod('put') ? Todo::findOrFail($request->todo_id) : new Todo;
 
         $todo->id = $request->input('todo_id');
         $todo->title = $request->input('title');
@@ -44,6 +47,37 @@ class TodoController extends Controller
         if($todo->save()) {
             return new TodoResource($todo);
         }
+
+        // Todo::updateOrCreate(
+        //     [
+        //         "title" => $todo->title,
+        //         "body"=> $todo->body,
+        //         "completed"=>$todo->completed,
+        //         "effort"=>$todo->effort,
+        //         "priority"=>$todo->priority
+        //     ]
+        // );
+
+        // } 
+        // catch (\Illuminate\Database\QueryException $e){
+        //     $errorCode = $e->errorInfo[1];
+        //     if($errorCode == 1062){
+                
+        //         // houston, we have a duplicate entry problem
+        //         $todo->id = $request->input('todo_id');
+        //         $todo->title = $request->input('title');
+        //         $todo->body = $request->input('body');
+        //         $todo->completed = $request->input('completed');
+        //         $todo->effort = $request->input('effort');
+        //         $todo->priority = $request->input('priority');
+                
+        //         if($todo->update()) {
+        //             return new TodoResource($todo);
+        //         }  
+        //     } else {
+        //         return $e;
+        //     }
+        // }
     }
 
     /**

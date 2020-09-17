@@ -2009,7 +2009,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.edit === false) {
-        // add
+        // if completed or any other fields are empty fill
+        // TODO: this must be changed
+        this.todo.completed = 0;
+        this.todo.effort = 10;
+        this.todo.priority = 1; // add
+
         fetch('api/todo', {
           method: 'post',
           body: JSON.stringify(this.todo),
@@ -2018,7 +2023,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (res) {
           return res.json();
-        }).then(function (date) {
+        }).then(function (data) {
           _this3.todo.title = '';
           _this3.todo.body = '';
           _this3.todo.completed = '';
@@ -2031,14 +2036,14 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         // update
         fetch('api/todo', {
-          method: 'post',
+          method: 'put',
           body: JSON.stringify(this.todo),
           headers: {
             'content-type': 'application/json'
           }
         }).then(function (res) {
           return res.json();
-        }).then(function (date) {
+        }).then(function (data) {
           _this3.todo.title = '';
           _this3.todo.body = '';
           _this3.todo.completed = '';
@@ -2047,6 +2052,8 @@ __webpack_require__.r(__webpack_exports__);
           alert('todo edited');
 
           _this3.fetchTodos();
+        })["catch"](function (err) {
+          return console.log(err);
         });
       }
     },

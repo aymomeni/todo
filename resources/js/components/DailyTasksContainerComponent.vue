@@ -90,6 +90,13 @@ export default {
     },
     addTodo() {
       if(this.edit === false) {
+
+        // if completed or any other fields are empty fill
+        // TODO: this must be changed
+        this.todo.completed = 0;
+        this.todo.effort = 10;
+        this.todo.priority = 1;
+
         // add
         fetch('api/todo', {
           method: 'post',
@@ -99,7 +106,7 @@ export default {
           }
         })
         .then(res => res.json())
-          .then(date => {
+          .then(data => {
             this.todo.title = '';
             this.todo.body = '';
             this.todo.completed = '';
@@ -111,14 +118,14 @@ export default {
       } else {
           // update
           fetch('api/todo', {
-          method: 'post',
+          method: 'put',
           body: JSON.stringify(this.todo),
           headers: {
             'content-type': 'application/json'
           }
         })
         .then(res => res.json())
-        .then(date => {
+        .then(data => {
           this.todo.title = '';
           this.todo.body = '';
           this.todo.completed = '';
@@ -127,6 +134,7 @@ export default {
           alert('todo edited');
           this.fetchTodos();
         })
+        .catch(err => console.log(err));
       }
     },
     editTodo(todo) {

@@ -16,7 +16,7 @@ class GoalController extends Controller
     public function index()
     {
         // Get goals
-        $goals = Goal::orderBy('created_at', 'desc')->paginate(5);
+        $goals = Goal::orderBy('created_at', 'desc')->paginate(3);
     }
 
     /**

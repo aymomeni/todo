@@ -12,6 +12,7 @@
                             @click="sendEditTodoToParent(todo)"  
                             type="button"
                             class="col-sm mb-1 btn btn-secondary button-styles"
+                            v-bind:class="{'disabled': todo.completed}"
                         >
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </button>
@@ -21,7 +22,8 @@
                         @click="sendEditTodoCompletedToParent(todo) && !todo.completed"
                         type="button" 
                         class="col-sm mb-1 btn btn-success" 
-                        v-bind:class="{'disabled': todo.completed}">
+                        v-bind:class="{'disabled': todo.completed}"
+                        >
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -55,13 +57,17 @@
         },
         methods: {
             sendEditTodoToParent(todo) {
-                console.log("sendEditTodoToParent");
-                this.$emit('editTodo', todo);
+                if(!todo.completed) {
+                    console.log("sendEditTodoToParent");
+                    this.$emit('editTodo', todo);
+                }
             },
             sendEditTodoCompletedToParent(todo) {
                 console.log("sendEditTodoCompletedToParent");
-                todo.completed = true;
-                this.$emit('completedTodo', todo);
+                if(!todo.completed) {
+                    todo.completed = true;
+                    this.$emit('completedTodo', todo);
+                }
             },
             sendDeleteTodoToParent(id) {
                 console.log("sendDeleteTodoToParent");
@@ -79,7 +85,6 @@
 
 .button-styles {
     height: 2.2 rem;
-    opacity: 1;
 }
 
 .crossed-out {

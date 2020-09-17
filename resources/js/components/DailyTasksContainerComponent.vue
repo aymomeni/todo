@@ -7,10 +7,8 @@
     </div>
     <form @submit.prevent="addTodo" class="mb-3 p-2">
       <div class="form-group"> 
-        <input type="text" class="form-control mb-1" placeholder="Title"
-        v-model="todo.title">
-                <input type="text" class="form-control" placeholder="Body"
-        v-model="todo.body">
+        <input type="text" class="form-control mb-1" placeholder="Task Title" v-model="todo.title">
+        <textarea class="form-control" placeholder="Task Description" rows="3" v-model="todo.body"></textarea>
       </div>
       <button type="submit" class="btn btn-dark btn-block">Save</button>
     </form>
@@ -108,12 +106,8 @@ export default {
         })
         .then(res => res.json())
           .then(data => {
-            this.todo.title = '';
-            this.todo.body = '';
-            this.todo.completed = '';
-            this.todo.effort = '';
-            this.todo.priority = '';
-            alert('todo added');
+            this.clearThisTodo()
+            alert('Your task has been added.');
             this.fetchTodos();
         })
       } else {
@@ -127,12 +121,8 @@ export default {
         })
         .then(res => res.json())
         .then(data => {
-          this.todo.title = '';
-          this.todo.body = '';
-          this.todo.completed = '';
-          this.todo.effort = '';
-          this.todo.priority = '';
-          alert('todo edited');
+          this.clearThisTodo();
+          alert('Your task was edited!');
           this.fetchTodos();
         })
         .catch(err => console.log(err));
@@ -154,7 +144,6 @@ export default {
       this.edit = true;
       todo.todo_id = todo.id;
 
-      // update
       fetch('api/todo', {
         method: 'put',
         body: JSON.stringify(todo),
@@ -164,9 +153,17 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
-          this.fetchTodos();
+          // nothing else needs to be done
+          alert("Good job for completing your Task!")
         })
         .catch(err => console.log(err));
+    },
+    clearThisTodo() {
+      this.todo.title = '';
+      this.todo.body = '';
+      this.todo.completed = '';
+      this.todo.effort = '';
+      this.todo.priority = '';
     }
   },
 };

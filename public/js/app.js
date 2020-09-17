@@ -1937,8 +1937,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2025,12 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.todo.title = '';
-          _this3.todo.body = '';
-          _this3.todo.completed = '';
-          _this3.todo.effort = '';
-          _this3.todo.priority = '';
-          alert('todo added');
+          _this3.clearThisTodo();
+
+          alert('Your task has been added.');
 
           _this3.fetchTodos();
         });
@@ -2045,12 +2040,9 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.todo.title = '';
-          _this3.todo.body = '';
-          _this3.todo.completed = '';
-          _this3.todo.effort = '';
-          _this3.todo.priority = '';
-          alert('todo edited');
+          _this3.clearThisTodo();
+
+          alert('Your task was edited!');
 
           _this3.fetchTodos();
         })["catch"](function (err) {
@@ -2070,12 +2062,9 @@ __webpack_require__.r(__webpack_exports__);
       this.todo.priority = todo.priority;
     },
     completedTodo: function completedTodo(todo) {
-      var _this4 = this;
-
       console.log("completed todo called");
       this.edit = true;
-      todo.todo_id = todo.id; // update
-
+      todo.todo_id = todo.id;
       fetch('api/todo', {
         method: 'put',
         body: JSON.stringify(todo),
@@ -2085,10 +2074,18 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this4.fetchTodos();
+        // nothing else needs to be done
+        alert("Good job for completing your Task!");
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    clearThisTodo: function clearThisTodo() {
+      this.todo.title = '';
+      this.todo.body = '';
+      this.todo.completed = '';
+      this.todo.effort = '';
+      this.todo.priority = '';
     }
   }
 });
@@ -2146,6 +2143,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     todo: {
@@ -2160,13 +2159,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendEditTodoToParent: function sendEditTodoToParent(todo) {
-      console.log("sendEditTodoToParent");
-      this.$emit('editTodo', todo);
+      if (!todo.completed) {
+        console.log("sendEditTodoToParent");
+        this.$emit('editTodo', todo);
+      }
     },
     sendEditTodoCompletedToParent: function sendEditTodoCompletedToParent(todo) {
       console.log("sendEditTodoCompletedToParent");
-      todo.completed = true;
-      this.$emit('completedTodo', todo);
+
+      if (!todo.completed) {
+        todo.completed = true;
+        this.$emit('completedTodo', todo);
+      }
     },
     sendDeleteTodoToParent: function sendDeleteTodoToParent(id) {
       console.log("sendDeleteTodoToParent");
@@ -6754,7 +6758,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.button-styles[data-v-7b1e22c4] {\r\n    height: 2.2 rem;\r\n    opacity: 1;\n}\n.crossed-out[data-v-7b1e22c4] {\r\n    text-decoration:line-through !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.button-styles[data-v-7b1e22c4] {\r\n    height: 2.2 rem;\n}\n.crossed-out[data-v-7b1e22c4] {\r\n    text-decoration:line-through !important;\n}\r\n", ""]);
 
 // exports
 
@@ -38657,7 +38661,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control mb-1",
-              attrs: { type: "text", placeholder: "Title" },
+              attrs: { type: "text", placeholder: "Task Title" },
               domProps: { value: _vm.todo.title },
               on: {
                 input: function($event) {
@@ -38669,7 +38673,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("input", {
+            _c("textarea", {
               directives: [
                 {
                   name: "model",
@@ -38679,7 +38683,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Body" },
+              attrs: { placeholder: "Task Description", rows: "3" },
               domProps: { value: _vm.todo.body },
               on: {
                 input: function($event) {
@@ -38785,6 +38789,7 @@ var render = function() {
               "button",
               {
                 staticClass: "col-sm mb-1 btn btn-secondary button-styles",
+                class: { disabled: _vm.todo.completed },
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {

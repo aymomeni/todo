@@ -17,7 +17,7 @@ class BookOrResourceController extends Controller
     public function index()
     {
         // Get books or resources
-        $booksOrResources = BookOrResource::orderBy('created_at', 'desc')->paginate(5);
+        $booksOrResources = BookOrResource::orderBy('created_at', 'desc')->paginate(3);
 
         // Return collection of articles as a resource
         return BookOrResourceResource::collection($booksOrResources);

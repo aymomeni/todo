@@ -24,7 +24,7 @@
                             <ul>
                                 <li class="list-item"><strong>basic PHP:</strong> PHP Foundations (Jill Gundersen) Pluralsight </li>
                                 <li class="list-item"><strong>setting up the xampp stack and work environment / deploying on heroku:</strong> Laravel PHP Framework and Vue.js (Eding Muhamad Saprudin) Udemy</li>
-                                <li class="list-item"><strong>setting up the frontend / backend:</strong> Traversy Media Youtube</li>
+                                <li class="list-item"><strong>frontend / backend setup:</strong> Traversy Media Youtube</li>
                                 <li class="list-item"><strong>laravel documentation</strong></li>
                             </ul>
                         </div>
@@ -56,6 +56,7 @@
 <style scoped>
 .daily-task-view {
     min-width: 800px;
+    color: dimgrey;
 }
 .readme-list {
     font-size: 1.2rem;

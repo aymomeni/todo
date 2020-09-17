@@ -6811,7 +6811,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.daily-task-view[data-v-35880197] {\r\n    min-width: 800px;\n}\n.readme-list[data-v-35880197] {\r\n    font-size: 1.2rem;\n}\n.list-item[data-v-35880197] {\r\n    margin-top: .8rem;\n}\n.readme[data-v-35880197] {\r\n    margin-top: 2rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.daily-task-view[data-v-35880197] {\r\n    min-width: 800px;\r\n    color: dimgrey;\n}\n.readme-list[data-v-35880197] {\r\n    font-size: 1.2rem;\n}\n.list-item[data-v-35880197] {\r\n    margin-top: .8rem;\n}\n.readme[data-v-35880197] {\r\n    margin-top: 2rem;\n}\r\n", ""]);
 
 // exports
 
@@ -39167,7 +39167,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
-            _c("strong", [_vm._v("setting up the frontend / backend:")]),
+            _c("strong", [_vm._v("frontend / backend setup:")]),
             _vm._v(" Traversy Media Youtube")
           ]),
           _vm._v(" "),

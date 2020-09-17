@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Todo extends JsonResource
+class BooksOrResources extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -25,13 +25,4 @@ class Todo extends JsonResource
             'priority' => $this->priority
         ];
     }
-
-    // can add custom json elements and formats to what is returned
-    // public function with($request)
-    // {
-    //     return [
-    //         'version' => '1.0.0',
-    //         'author_url' => url("http://traversymedia.com")
-    //     ];
-    // }
 }

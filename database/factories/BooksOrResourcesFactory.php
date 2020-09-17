@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Todo;
+use App\Models\BooksOrResources;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class TodoFactory extends Factory
+class BooksOrResourcesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Todo::class;
+    protected $model = BooksOrResources::class;
 
     /**
      * Define the model's default state.

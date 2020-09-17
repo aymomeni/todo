@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Todo;
+use App\Models\Goals;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class TodoFactory extends Factory
+class GoalsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

@@ -2,18 +2,26 @@
   <div class="card shadow bg-white rounded">
     <div class="card-header">
       <h4>
-        <i class="fa fa-check-square" aria-hidden="true" style="color:orange"></i> Daily
+        <i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> Daily
       </h4>
     </div>
-
+    <form @submit.prevent="addTodo" class="mb-3 p-2">
+      <div class="form-group"> 
+        <input type="text" class="form-control mb-1" placeholder="Title"
+        v-model="todo.title">
+                <input type="text" class="form-control" placeholder="Body"
+        v-model="todo.body">
+      </div>
+      <button type="submit" class="btn btn-dark btn-block">Save</button>
+    </form>
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
       <IndividualTaskComponent 
-	  	@deleteTodos="deleteTodos" 
-		  :todo="todo" />
+        @deleteTodo="deleteTodo" 
+        :todo="todo" />
     </div>
     <PaginationComponent 
-		@fetchTodos="fetchTodos" 
-		:pagination="pagination" />
+      @fetchTodos="fetchTodos" 
+      :pagination="pagination" />
   </div>
 </template>
 
@@ -23,12 +31,18 @@ import IndividualTaskComponent from "./IndividualTaskComponent";
 
 export default {
   components: {
-	PaginationComponent,
-	IndividualTaskComponent
+    PaginationComponent,
+    IndividualTaskComponent
   },
   data: function () {
     return {
       todos: [],
+      todo: {
+        title: "",
+        body: "",
+        id: ""
+      },
+      todo_id: "",
       pagination: {},
       edit: false,
     };
@@ -57,7 +71,7 @@ export default {
       };
       this.pagination = pagination;
     },
-    deleteTodos(id) {
+    deleteTodo(id) {
       if (confirm("Are you sure you want to delete this task?")) {
         fetch(`/api/todo/${id}`, {
           method: "delete",
@@ -70,6 +84,54 @@ export default {
           .catch((err) => console.log(err));
       }
     },
+    addTodo() {
+      if(this.edit === false) {
+        // add
+        fetch('api/todo', {
+          method: 'post',
+          body: JSON.stringify(this.todo),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        .then(res => res.json())
+          .then(date => {
+            this.todo.title = '';
+            this.todo.body = '';
+            alert('todo added');
+            this.fetchTodos();
+        })
+      } else {
+          // update
+          fetch('api/todo', {
+          method: 'post',
+          body: JSON.stringify(this.todo),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(date => {
+          this.todo.title = '';
+          this.todo.body = '';
+          alert('todo edited');
+          this.fetchTodos();
+        })
+      }
+    },
+    editTodo(todo) {
+      this.edit = true;
+      this.todo.id = todo.id;
+      this.todo.todo_id = todo.id;
+      this.todo.title = todo.title;
+      this.todo.body = todo.body;
+    }
   },
 };
 </script>
+
+<style scoped>
+#fontawesome-icon-header {
+  color: orange;
+}
+</style>

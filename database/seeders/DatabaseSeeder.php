@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call(TodosTableSeeder::class);
+        $this->call(GoalsTableSeeder::class);
+        $this->call(BooksOrResourcesSeeder::class);
     }
 }

@@ -37,7 +37,7 @@
             return { }
         },
         methods: {
-            sendFetchTodosToParent(id) {
+            sendFetchTodosToParent(url) {
                 this.$emit("fetchTodos", url);
             }
         }

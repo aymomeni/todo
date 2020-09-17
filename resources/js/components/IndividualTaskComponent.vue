@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="row pr-3">
-                        <button type="button" class="col-sm mb-1 btn btn-secondary button-styles">
+                        <button type="button" @click="sendEditTodoToParent(todo)" class="col-sm mb-1 btn btn-secondary button-styles">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -46,8 +46,11 @@
             }
         },
         methods: {
+            sendEditTodoToParent(todo) {
+                this.$emit('editTodo', todo);
+            },
             sendDeleteTodoToParent(id) {
-                this.$emit('deleteTodos', id);
+                this.$emit('deleteTodo', id);
             }
         }
     }

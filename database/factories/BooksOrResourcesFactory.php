@@ -24,8 +24,8 @@ class BooksOrResourcesFactory extends Factory
     {
         return [
             'title' => $this->faker->text(50),
-            'body' => $this->faker->text(200),
-            'completed' => $this->faker->boolval,
+            'body' => $this->faker->text(180),
+            'completed' => $this->faker->boolean,
             'effort' => $this->faker->numberBetween(3, 55),
             'priority' => $this->faker->numberBetween(1, 3)
         ];

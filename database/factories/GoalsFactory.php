@@ -13,7 +13,7 @@ class GoalsFactory extends Factory
      *
      * @var string
      */
-    protected $model = Todo::class;
+    protected $model = Goals::class;
 
     /**
      * Define the model's default state.
@@ -24,8 +24,8 @@ class GoalsFactory extends Factory
     {
         return [
             'title' => $this->faker->text(50),
-            'body' => $this->faker->text(200),
-            'completed' => $this->faker->boolval,
+            'body' => $this->faker->text(180),
+            'completed' => $this->faker->boolean,
             'effort' => $this->faker->numberBetween(3, 55),
             'priority' => $this->faker->numberBetween(1, 3)
         ];

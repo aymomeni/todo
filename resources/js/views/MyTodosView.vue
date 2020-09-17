@@ -11,7 +11,7 @@
                         <h2>readme:</h2>
                         <div class="readme-list">
                             <ul>
-                                <li class="list-item">you can <strong>create a new task</strong> by filling out the form and <strong>clicking save</strong>. This will persist the task for future lookups.</li>
+                                <li class="list-item"><strong>create a new task</strong> by filling out the form and <strong>clicking save</strong>. This will persist the task for future lookups.</li>
                                 <li class="list-item"><strong>edit</strong> a task with the <strong>grey pencil button</strong>. Change what's needed in the form and <strong>save</strong> to persist it.</li>
                                 <li class="list-item">click the <strong>green checkmark button</strong> to mark a task as done.</li>
                                 <li class="list-item">note after something is marked done editing and clicking the complete button won't be allowed.</li>

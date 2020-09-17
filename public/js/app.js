@@ -39103,7 +39103,6 @@ var staticRenderFns = [
       _c("div", { staticClass: "readme-list" }, [
         _c("ul", [
           _c("li", { staticClass: "list-item" }, [
-            _vm._v("you can "),
             _c("strong", [_vm._v("create a new task")]),
             _vm._v(" by filling out the form and "),
             _c("strong", [_vm._v("clicking save")]),

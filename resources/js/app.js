@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import BootstrapVue from 'bootstrap-vue';
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -20,6 +22,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('MyTodosView', require('./views/MyTodosView.vue').default);
+Vue.use(BootstrapVue);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

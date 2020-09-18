@@ -2,38 +2,38 @@
     <div>
         <li class="list-group-item list-item">
             <div class="row">
-                <div class="col-sm-10 tite-body-style">
+                <div class="col 12 col-sm-9">
                     <h4 v-bind:class="{'crossed-out': todo.completed}">{{ todo.title }}</h4>
                     <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
                 </div>
-                <div class="col-sm-2">
-                    <div class="row pr-3">
+                <div class="col-12 col-sm-3">
+                    <div>
                         <button
                             @click="sendEditTodoToParent(todo)"  
                             type="button"
-                            class="col-sm mb-1 btn btn-secondary button-styles"
+                            class="btn mb-1 btn-secondary btn-block"
                             v-bind:class="{'disabled': todo.completed}"
                         >
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="row pr-3">
+                    <div>
                         <button 
                         @click="sendEditTodoCompletedToParent(todo) && !todo.completed"
                         type="button" 
-                        class="col-sm mb-1 btn btn-success" 
+                        class="btn mb-1 btn-success btn-block" 
                         v-bind:class="{'disabled': todo.completed}"
                         >
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="row pr-3">
+                    <div>
                         <button
                             @click="sendDeleteTodoToParent(todo.id)"
                             type="button"
-                            class="col-sm mb-1 btn btn-danger"
+                            class="btn mb-1 btn-danger btn-block"
                         >
-                            <i class="fa fa-times" aria-hidden="true"></i>
+                            <i class="fa fa-times" aria-hidden="true" style="width: 1rem"></i>
                         </button>
                     </div>
                 </div>
@@ -81,9 +81,6 @@
 .list-item {
     padding: .5rem .5rem !important; 
     min-height: 180px;
-}
-.button-styles {
-    height: 2.2 rem;
 }
 .crossed-out {
     text-decoration:line-through !important;

@@ -4,10 +4,10 @@
         <div class="container daily-task-view">
             <div class="mt-4">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-12 col-sm-12 col-lg-4 mt-4">
                         <DailyTasksContainerComponent />
                     </div>
-                    <div class="col-8 readme">
+                    <div class="col-12 col-sm-12 col-lg-8 readme">
                         <h2>readme:</h2>
                         <div class="readme-list">
                             <ul>
@@ -49,7 +49,6 @@
 
 <style scoped>
 .daily-task-view {
-    min-width: 800px;
     color: dimgrey;
 }
 .readme-list {

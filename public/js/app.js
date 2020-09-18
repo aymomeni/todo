@@ -6765,7 +6765,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.button-styles[data-v-7b1e22c4] {\r\n    height: 2.2 rem;\n}\n.crossed-out[data-v-7b1e22c4] {\r\n    text-decoration:line-through !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.list-item[data-v-7b1e22c4] {\r\n    padding: .5rem .5rem !important; \r\n    min-height: 180px;\n}\n.crossed-out[data-v-7b1e22c4] {\r\n    text-decoration:line-through !important;\n}\r\n", ""]);
 
 // exports
 
@@ -6803,7 +6803,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.daily-task-view[data-v-35880197] {\r\n    min-width: 800px;\r\n    color: dimgrey;\n}\n.readme-list[data-v-35880197] {\r\n    font-size: 1.2rem;\n}\n.list-item[data-v-35880197] {\r\n    margin-top: .8rem;\n}\n.readme[data-v-35880197] {\r\n    margin-top: 2rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.daily-task-view[data-v-35880197] {\r\n    color: dimgrey;\n}\n.readme-list[data-v-35880197] {\r\n    font-size: 1.2rem;\n}\n.list-item[data-v-35880197] {\r\n    margin-top: .8rem;\n}\n.readme[data-v-35880197] {\r\n    margin-top: 2rem;\n}\r\n", ""]);
 
 // exports
 
@@ -38829,7 +38829,7 @@ var render = function() {
   return _c("div", [
     _c("li", { staticClass: "list-group-item list-item" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-10 tite-body-style" }, [
+        _c("div", { staticClass: "col 12 col-sm-9" }, [
           _c("h4", { class: { "crossed-out": _vm.todo.completed } }, [
             _vm._v(_vm._s(_vm.todo.title))
           ]),
@@ -38839,12 +38839,12 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-2" }, [
-          _c("div", { staticClass: "row pr-3" }, [
+        _c("div", { staticClass: "col-12 col-sm-3" }, [
+          _c("div", [
             _c(
               "button",
               {
-                staticClass: "col-sm mb-1 btn btn-secondary button-styles",
+                staticClass: "btn mb-1 btn-secondary btn-block",
                 class: { disabled: _vm.todo.completed },
                 attrs: { type: "button" },
                 on: {
@@ -38862,11 +38862,11 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row pr-3" }, [
+          _c("div", [
             _c(
               "button",
               {
-                staticClass: "col-sm mb-1 btn btn-success",
+                staticClass: "btn mb-1 btn-success btn-block",
                 class: { disabled: _vm.todo.completed },
                 attrs: { type: "button" },
                 on: {
@@ -38885,11 +38885,11 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row pr-3" }, [
+          _c("div", [
             _c(
               "button",
               {
-                staticClass: "col-sm mb-1 btn btn-danger",
+                staticClass: "btn mb-1 btn-danger btn-block",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -38900,6 +38900,7 @@ var render = function() {
               [
                 _c("i", {
                   staticClass: "fa fa-times",
+                  staticStyle: { width: "1rem" },
                   attrs: { "aria-hidden": "true" }
                 })
               ]
@@ -39071,7 +39072,7 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c(
               "div",
-              { staticClass: "col-4" },
+              { staticClass: "col-12 col-sm-12 col-lg-4 mt-4" },
               [_c("DailyTasksContainerComponent")],
               1
             ),
@@ -39089,7 +39090,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-8 readme" }, [
+    return _c("div", { staticClass: "col-12 col-sm-12 col-lg-8 readme" }, [
       _c("h2", [_vm._v("readme:")]),
       _vm._v(" "),
       _c("div", { staticClass: "readme-list" }, [

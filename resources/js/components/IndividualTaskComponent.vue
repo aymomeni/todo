@@ -82,11 +82,9 @@
     padding: .5rem .5rem !important; 
     min-height: 180px;
 }
-
 .button-styles {
     height: 2.2 rem;
 }
-
 .crossed-out {
     text-decoration:line-through !important;
 }

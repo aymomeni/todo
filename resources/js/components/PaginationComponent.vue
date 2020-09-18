@@ -33,9 +33,6 @@
                 type: Object
             }
         },
-        data: function() {
-            return { }
-        },
         methods: {
             sendFetchTodosToParent(url) {
                 this.$emit("fetchTodos", url);

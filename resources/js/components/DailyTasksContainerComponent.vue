@@ -88,8 +88,8 @@ export default {
     addTodo() {
       if(this.edit === false) {
 
-        // below are dummy values attempted effort and priority
-        // but ran out of time (will be added in the future)
+        // below are dummy values attempted effort and priority for tasks
+        // but ran out of time (perhaps will be added in the future)
         this.todo.completed = 0;
         this.todo.effort = 10;
         this.todo.priority = 1;

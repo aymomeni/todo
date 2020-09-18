@@ -43,13 +43,7 @@
         components: {
             NavbarComponent,
             DailyTasksContainerComponent
-        },
-        data() {
-            return { }
-        },
-        created() {
-        },
-        methods: { }
+        }
     }
 </script>
 

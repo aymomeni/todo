@@ -2006,8 +2006,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.edit === false) {
-        // below are dummy values attempted effort and priority
-        // but ran out of time (will be added in the future)
+        // below are dummy values attempted effort and priority for tasks
+        // but ran out of time (perhaps will be added in the future)
         this.todo.completed = 0;
         this.todo.effort = 10;
         this.todo.priority = 1; // add
@@ -2246,9 +2246,6 @@ __webpack_require__.r(__webpack_exports__);
       type: Object
     }
   },
-  data: function data() {
-    return {};
-  },
   methods: {
     sendFetchTodosToParent: function sendFetchTodosToParent(url) {
       this.$emit("fetchTodos", url);
@@ -2312,12 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     NavbarComponent: _components_NavbarComponent__WEBPACK_IMPORTED_MODULE_0__["default"],
     DailyTasksContainerComponent: _components_DailyTasksContainerComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {};
-  },
-  created: function created() {},
-  methods: {}
+  }
 });
 
 /***/ }),

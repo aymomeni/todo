@@ -2,9 +2,9 @@
     <div>
         <div class="accordion">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <b-button block v-b-toggle.accordion-1 variant="dark">add</b-button>
+                <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -59,7 +59,7 @@ export default {
             title: "",
             description: "",
             priorityValue: 3,
-            effortValue: 6,
+            effortValue: 3,
             typeSelected: 'A',
                 options: [
                     { value: 'A', text: 'Daily' },

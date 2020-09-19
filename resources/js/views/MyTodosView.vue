@@ -1,13 +1,14 @@
 <template>
     <div>
         <NavbarComponent />
-        <div class="container daily-task-view">
+        <div class="daily-task-view">
+            <taskCreatorHeaderComponent class="mt-2" />
             <div class="mt-4">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-lg-4 mt-4">
                         <DailyTasksContainerComponent />
                     </div>
-                    <div class="col-12 col-sm-12 col-lg-8 readme">
+                    <div class="col-12 col-sm-12 col-lg-8 readme">               
                         
                     </div>
                 </div>
@@ -18,14 +19,15 @@
 
 <script>
     import NavbarComponent from '../components/NavbarComponent';
-    import ReadmeComponent from '../components/readmeComponent/ReadmeComponent';
+    // import ReadmeComponent from '../components/readmeComponents/ReadmeComponent';
+    import TaskCreatorHeaderComponent from '../components/taskCreatorHeaderComponents/taskCreatorHeaderComponent';
     import DailyTasksContainerComponent from '../components/DailyTasksContainerComponent';
 
     export default {
         components: {
             NavbarComponent,
             DailyTasksContainerComponent,
-            ReadmeComponent
+            TaskCreatorHeaderComponent
         }
     }
 </script>

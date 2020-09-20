@@ -5,7 +5,7 @@
             <taskCreatorHeaderComponent class="mt-2" />
             <div class="mt-4">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-lg-4 mt-4">
+                    <div class="col-12 col-sm-12 col-lg-4 mt-2">
                         <DailyTasksContainerComponent />
                     </div>
                     <div class="col-12 col-sm-12 col-lg-8 readme">               

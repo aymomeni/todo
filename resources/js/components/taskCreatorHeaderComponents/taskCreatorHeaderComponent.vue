@@ -27,18 +27,13 @@
                             </b-col>
                             <b-col>
                                 <b-form-rating id="effort-rating-inline" color="rgb(64, 192, 128)" v-model="priorityValue" size="md" no-border></b-form-rating>
-                                <b-form-text class="ml-1 mb-3">priority&nbsp;&nbsp;<strong>{{priorityValue}}</strong></b-form-text>
+                                <div class="mb-3" id="priority-label">priority&nbsp;&nbsp;<strong>{{priorityValue}}</strong></div>
                                 
                                 <b-form-input v-model="effortValue" show-value type="range" min="1" max="12" step="1"></b-form-input>
-                                <b-form-text class="ml-1 mb-3">effort&nbsp;&nbsp;<strong>{{ effortValue }}</strong></b-form-text>
+                                <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effortValue }}</strong></div>
 
                                 <div>
-                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3">
-                                        <!-- This slot appears above the options from 'options' prop -->
-                                        <!-- <template v-slot:first>
-                                            <b-form-select-option :value="null" disabled>-- select the type of task --</b-form-select-option>
-                                        </template> -->
-                                    </b-form-select>
+                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3" />
                                     <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div>
                                 </div>
                             </b-col>
@@ -85,6 +80,13 @@ export default {
     font-size: 1.5rem;
 }
 
+#effort-lable {
+    font-size: 1.5;
+}
+
+#priority-label {
+    font-size: 1.5;
+}
 
 #save-button {
     color: rgb(116, 204, 153);

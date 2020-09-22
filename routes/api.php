@@ -20,19 +20,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // List daily task
-Route::get('daily', 'App\Http\Controllers\TodoController@index');
+Route::get('todo', 'App\Http\Controllers\TodoController@index');
 
 // List a specific daily task
-Route::get('daily/{id}', 'App\Http\Controllers\TodoController@show');
+Route::get('todo/{id}', 'App\Http\Controllers\TodoController@show');
 
 // Create a daily task
-Route::post('daily', 'App\Http\Controllers\TodoController@store');
+Route::post('todo', 'App\Http\Controllers\TodoController@store');
 
 // Update a daily task
-Route::put('daily', 'App\Http\Controllers\TodoController@store');
+Route::put('todo', 'App\Http\Controllers\TodoController@store');
 
 // Delete a daily task
-Route::delete('daily/{id}', 'App\Http\Controllers\TodoController@destroy');
+Route::delete('todo/{id}', 'App\Http\Controllers\TodoController@destroy');
 
 
 // List goals

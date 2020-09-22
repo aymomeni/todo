@@ -2,4 +2,4 @@
 
 ## About Todo app
 
-Todo app to practice using laravel in combination with Vue
+laravel + vue task management program

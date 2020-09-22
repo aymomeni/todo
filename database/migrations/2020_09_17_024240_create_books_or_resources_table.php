@@ -31,6 +31,6 @@ class CreateBooksOrResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_or_resource');
+        Schema::dropIfExists('book_or_resources');
     }
 }

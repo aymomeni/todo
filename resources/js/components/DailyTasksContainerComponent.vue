@@ -54,7 +54,7 @@ export default {
   methods: {
     fetchTodos(page_url) {
       let vm = this;
-      page_url = page_url || "/api/todos";
+      page_url = page_url || "/api/todo";
       fetch(page_url)
         .then((res) => res.json())
         .then((res) => {

@@ -17,6 +17,9 @@ class GoalController extends Controller
     {
         // Get goals
         $goals = Goal::orderBy('created_at', 'desc')->paginate(3);
+
+        // Return collection of articles as a resource
+        return GoalResource::collection($goals);
     }
 
     /**

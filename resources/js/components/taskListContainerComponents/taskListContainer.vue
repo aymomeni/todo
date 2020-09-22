@@ -64,11 +64,14 @@ export default {
   },
   created() {
     this.fetchTodos();
+    console.log(this.base_url); // delete later
   },
   methods: {
     fetchTodos(page_url) {
       let vm = this;
-      page_url = page_url || "/api/todos";
+      page_url = page_url || this.base_url;
+      console.log("page_url");
+      console.log(page_url);
       fetch(page_url)
         .then((res) => res.json())
         .then((res) => {
@@ -88,7 +91,7 @@ export default {
     },
     deleteTodo(id) {
       if (confirm("Are you sure you want to delete this task?")) {
-        fetch(`/api/todo/${id}`, {
+        fetch(this.base_url + `/${id}`, {
           method: "delete",
         })
           .then((res) => res.json())
@@ -109,7 +112,7 @@ export default {
         this.todo.priority = 1;
 
         // add
-        fetch('api/todo', {
+        fetch(this.base_url, {
           method: 'post',
           body: JSON.stringify(this.todo),
           headers: {
@@ -124,7 +127,7 @@ export default {
         })
       } else {
           // update
-          fetch('api/todo', {
+          fetch(this.base_url, {
           method: 'put',
           body: JSON.stringify(this.todo),
           headers: {
@@ -156,7 +159,7 @@ export default {
       this.edit = true;
       todo.todo_id = todo.id;
 
-      fetch('api/todo', {
+      fetch(this.base_url, {
         method: 'put',
         body: JSON.stringify(todo),
         headers: {

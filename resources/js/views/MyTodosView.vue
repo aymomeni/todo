@@ -11,21 +11,21 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Goals"
-                            base_url="api/goals"
-                            type="goals"
+                            base_url="/api/goal"
+                            type="goal"
                         />
                     </div>
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Books or Resources"
-                            base_url="api/booksOrResources"
-                            type="booksOrResources"
+                            base_url="/api/bookOrResource"
+                            type="bookOrResource"
                         />
                     </div>
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
-                            taskListContainerTitle="Completed"
-                            base_url="api/completed"
+                            taskListContainerTitle="Completed Tasks"
+                            base_url="/api/completedtask"
                             type="completed"
                         />
                     </div>

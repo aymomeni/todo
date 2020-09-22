@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TodosTableSeeder::class);
         $this->call(GoalsTableSeeder::class);
         $this->call(BooksOrResourcesTableSeeder::class);
+        $this->call(CompletedTasksTableSeeder::class);
     }
 }

@@ -66,24 +66,18 @@ Route::put('bookOrResource', 'App\Http\Controllers\BookOrResourceController@stor
 // Delete book or resource
 Route::delete('bookOrResource/{id}', 'App\Http\Controllers\BookOrResourceController@destroy');
 
-// List books or resources
-Route::get('bookOrResource', 'App\Http\Controllers\BookOrResourceController@index');
-
 
 // List books or resources
-Route::get('completed', 'App\Http\Controllers\CompletedController@index');
+Route::get('completedtask', 'App\Http\Controllers\CompletedTaskController@index');
 
 // List single book or resource
-Route::get('completed/{id}', 'App\Http\Controllers\CompletedController@show');
+Route::get('completedtask/{id}', 'App\Http\Controllers\CompletedTaskController@show');
 
 // Create new book or resource
-Route::post('completed', 'App\Http\Controllers\CompletedController@store');
+Route::post('completedtask', 'App\Http\Controllers\CompletedTaskController@store');
 
 // Update book or resource
-Route::put('completed', 'App\Http\Controllers\CompletedController@store');
+Route::put('completedtask', 'App\Http\Controllers\CompletedTaskController@store');
 
 // Delete book or resource
-Route::delete('completed/{id}', 'App\Http\Controllers\CompletedController@destroy');
-
-// List books or resources
-Route::get('completed', 'App\Http\Controllers\CompletedController@index');
+Route::delete('completedtask/{id}', 'App\Http\Controllers\CompletedTaskController@destroy');

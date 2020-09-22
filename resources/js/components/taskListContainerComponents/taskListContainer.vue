@@ -1,7 +1,7 @@
 <template>
   <div class="card shadow bg-white rounded">
     <div class="card-header">
-      <h4><i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> Daily Tasks</h4>
+      <h4><i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> {{ taskListContainerTitle }}</h4>
     </div>
     <form @submit.prevent="addTodo" class="mb-3 p-2">
       <div class="form-group"> 
@@ -31,6 +31,20 @@ export default {
   components: {
     IndividualTaskComponent,
     PaginationComponent
+  },
+  props: {
+    taskListContainerTitle: {
+      type: String,
+      required: true
+    },
+    base_url: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true
+    }
   },
   data: function () {
     return {

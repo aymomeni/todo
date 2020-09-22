@@ -11,7 +11,7 @@
       <button type="submit" class="btn btn-dark btn-block">Save</button>
     </form>
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
-      <IndividualTaskComponent 
+      <TaskComponent 
         @deleteTodo="deleteTodo"
         @editTodo="editTodo"
         @completedTodo="completedTodo"
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import IndividualTaskComponent from "./IndividualTaskComponent";
-import PaginationComponent from "./PaginationComponent";
+import TaskComponent from "./taskComponents/taskComponent";
+import PaginationComponent from "./paginationComponents/paginationComponent";
 
 export default {
   components: {
-    IndividualTaskComponent,
+    TaskComponent,
     PaginationComponent
   },
   props: {

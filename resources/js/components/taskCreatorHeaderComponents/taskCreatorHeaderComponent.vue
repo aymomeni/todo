@@ -47,11 +47,13 @@
 </template>
 
 <script>
+//import { EventBus } from '../eventBus/eventBus';
+
 export default {
-    
     data: () => {
         return {
             accordionVisible: false, // dictates whether accordion is expanded or not
+            id: "",
             title: "",
             description: "",
             priorityValue: 1,
@@ -61,8 +63,31 @@ export default {
                     { value: 'A', text: 'Daily' },
                     { value: 'B', text: 'Goal' },
                     { value: 'C', text: 'Book or Resource'}
-                ]
+                ],
+            editTask: {
+                id: "",
+                title: "",
+                description: "",
+                priority: "",
+                effort: "",
+                type: ""
+            }
         }
+    },
+    created() {
+        // listening to when edit-task is called
+        // EventBus.$on('edit-task', (payload) => {
+        //     console.log("edit-task received");
+        //     this.accordionVisible = true;
+        //     this.title = payload.title;
+        //     this.description = payload.body;
+        //     this.effortValue = payload.effort;
+        //     this.priority = payload.priority;
+        // });
+    },
+    beforeDestroy() {
+        // // cleanup
+        // this.$eventBus.$off('edit-task');
     },
     methods: {
         priorityColor: (priorityValue) => {
@@ -81,6 +106,9 @@ export default {
                     return "rgb(64, 192, 128)";
             }
         }
+    },
+    computed: {
+        
     }
 }
 </script>

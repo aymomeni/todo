@@ -48,6 +48,8 @@
 </template>
 
 <script>
+    //import { EventBus } from '../../eventBus/eventBus';
+
     export default {
         props: {
             todo: {
@@ -74,6 +76,7 @@
             },
             sendEditTodoCompletedToParent(todo) {
                 console.log("sendEditTodoCompletedToParent");
+                //EventBus.$emit('edit-task', todo);
                 if(!todo.completed) {
                     todo.completed = true;
                     this.$emit('completedTodo', todo);
@@ -82,7 +85,7 @@
             sendDeleteTodoToParent(id) {
                 console.log("sendDeleteTodoToParent");
                 this.$emit('deleteTodo', id);
-            }
+            },
         }
     }
 </script>

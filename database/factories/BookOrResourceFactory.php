@@ -26,8 +26,8 @@ class BookOrResourceFactory extends Factory
             'title' => $this->faker->text(50),
             'body' => $this->faker->text(180),
             'completed' => $this->faker->boolean,
-            'effort' => $this->faker->numberBetween(3, 55),
-            'priority' => $this->faker->numberBetween(1, 3)
+            'effort' => $this->faker->numberBetween(1, 12),
+            'priority' => $this->faker->numberBetween(1, 5)
         ];
     }
 }

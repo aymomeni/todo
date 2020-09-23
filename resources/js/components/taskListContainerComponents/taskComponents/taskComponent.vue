@@ -2,9 +2,13 @@
     <div>
         <li class="list-group-item list-item">
             <div class="row">
-                <div class="col 12 col-sm-9">
-                    <h4 v-bind:class="{'crossed-out': todo.completed}">{{ todo.title }}</h4>
-                    <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
+                <div class="col-12 col-sm-9">
+                    <div class="priority-indicator">
+                        <h4 v-bind:class="{'crossed-out': todo.completed}">{{ todo.title }}</h4>
+                        <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
+                        <p>effort: {{todo.effort}} </p>
+                        <p>priority: {{todo.priority}} </p>
+                    </div>
                 </div>
                 <div class="col-12 col-sm-3">
                     <div>
@@ -84,5 +88,10 @@
 }
 .crossed-out {
     text-decoration:line-through !important;
+}
+
+.priority-indicator {
+    border-left: 6px solid rgb(255,153,102);
+    padding-left: 12px;
 }
 </style>

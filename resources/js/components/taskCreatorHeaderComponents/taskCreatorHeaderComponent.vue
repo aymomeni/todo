@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1" role="tab">
                 <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" :visible="accordionVisible" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -26,14 +26,14 @@
                                 </b-form-textarea>
                             </b-col>
                             <b-col>
-                                <b-form-rating id="effort-rating-inline" color="rgb(64, 192, 128)" v-model="priorityValue" size="md" no-border></b-form-rating>
+                                <b-form-rating id="effort-rating-inline" :color="priorityColor(priorityValue)" v-model="priorityValue" size="md" no-border></b-form-rating>
                                 <div class="mb-3" id="priority-label">priority&nbsp;&nbsp;<strong>{{priorityValue}}</strong></div>
                                 
                                 <b-form-input v-model="effortValue" show-value type="range" min="1" max="12" step="1"></b-form-input>
                                 <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effortValue }}</strong></div>
 
                                 <div>
-                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3" />
+                                    <b-form-select disabled v-model="typeSelected" :options="options" class="mb-3" />
                                     <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div>
                                 </div>
                             </b-col>
@@ -51,9 +51,10 @@ export default {
     
     data: () => {
         return {
+            accordionVisible: false, // dictates whether accordion is expanded or not
             title: "",
             description: "",
-            priorityValue: 3,
+            priorityValue: 1,
             effortValue: 3,
             typeSelected: 'A',
                 options: [
@@ -61,6 +62,24 @@ export default {
                     { value: 'B', text: 'Goal' },
                     { value: 'C', text: 'Book or Resource'}
                 ]
+        }
+    },
+    methods: {
+        priorityColor: (priorityValue) => {
+            switch (priorityValue) {
+                case 1:
+                    return "rgb(51,153,0)";
+                case 2:
+                    return "rgb(153,204,51)";
+                case 3:
+                    return "rgb(255,204,0)";
+                case 4:
+                    return "rgb(255,153,102)";
+                case 5:
+                    return "rgb(204,51,0)";
+                default:
+                    return "rgb(64, 192, 128)";
+            }
         }
     }
 }

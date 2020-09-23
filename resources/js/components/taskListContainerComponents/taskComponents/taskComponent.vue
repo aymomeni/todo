@@ -3,7 +3,8 @@
         <li class="list-group-item list-item">
             <div class="row">
                 <div class="col-12 col-sm-9">
-                    <div class="priority-indicator">
+                    <div v-bind:class="{'priority-indicator-one': todo.priority == 1, 'priority-indicator-two': todo.priority == 2, 
+                    'priority-indicator-three': todo.priority == 3, 'priority-indicator-four': todo.priority == 4, 'priority-indicator-five': todo.priority == 5}">
                         <h4 v-bind:class="{'crossed-out': todo.completed}">{{ todo.title }}</h4>
                         <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
                         <p>effort: {{todo.effort}} </p>
@@ -59,6 +60,11 @@
                 }
             }
         },
+        data: () => {
+            return {
+                priority_color_green: ""
+            }
+        },
         methods: {
             sendEditTodoToParent(todo) {
                 if(!todo.completed) {
@@ -90,8 +96,33 @@
     text-decoration:line-through !important;
 }
 
-.priority-indicator {
-    border-left: 6px solid rgb(255,153,102);
-    padding-left: 12px;
+.priority-indicator-one {
+    border-left: 4px solid rgb(51,153,0);
+    border-radius: 2px;
+    padding-left: 1rem;
+}
+
+.priority-indicator-two {
+    border-left: 4px solid rgb(153,204,51);
+    border-radius: 2px;
+    padding-left: 1rem;
+}
+
+.priority-indicator-three {
+    border-left: 4px solid rgb(255,204,0);
+    border-radius: 2px;
+    padding-left: 1rem;
+}
+
+.priority-indicator-four {
+    border-left: 4px solid rgb(255,153,102);
+    border-radius: 2px;
+    padding-left: 1rem;
+}
+
+.priority-indicator-five {
+    border-left: 4px solid rgb(204,51,0);
+    border-radius: 2px;
+    padding-left: 1rem;
 }
 </style>

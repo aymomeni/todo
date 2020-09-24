@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1" role="tab">
                 <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" :visible="getTaskObject.editing" accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" :visible="isEditing" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -18,19 +18,19 @@
                                 </b-form-input>
 
                                 <b-form-textarea
-                                    id="task-description"
-                                    v-model="description"
-                                    placeholder="Task Description"
+                                    id="task-body"
+                                    v-model="body"
+                                    placeholder="Task description"
                                     rows="5"
                                 >
                                 </b-form-textarea>
                             </b-col>
                             <b-col>
-                                <b-form-rating id="effort-rating-inline" :color="priorityColor(priorityValue)" v-model="priorityValue" size="md" no-border></b-form-rating>
-                                <div class="mb-3" id="priority-label">priority&nbsp;&nbsp;<strong>{{priorityValue}}</strong></div>
+                                <b-form-rating id="effort-rating-inline" :color="priorityColor(priority)" v-model="priority" size="md" no-border></b-form-rating>
+                                <div class="mb-3" id="priority-label">priority&nbsp;&nbsp;<strong>{{priority}}</strong></div>
                                 
-                                <b-form-input v-model="effortValue" show-value type="range" min="1" max="12" step="1"></b-form-input>
-                                <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effortValue }}</strong></div>
+                                <b-form-input v-model="effort" show-value type="range" min="1" max="12" step="1"></b-form-input>
+                                <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effort }}</strong></div>
 
                                 <div>
                                     <b-form-select disabled v-model="typeSelected" :options="options" class="mb-3" />
@@ -53,9 +53,9 @@ export default {
             accordionVisible: false, // dictates whether accordion is expanded or not
             id: "",
             title: "",
-            description: "",
-            priorityValue: 1,
-            effortValue: 3,
+            body: "",
+            priority: 1,
+            effort: 3,
             typeSelected: 'A',
                 options: [
                     { value: 'A', text: 'Daily' },
@@ -65,7 +65,7 @@ export default {
             editTask: {
                 id: "",
                 title: "",
-                description: "",
+                body: "",
                 priority: "",
                 effort: "",
                 type: ""
@@ -114,10 +114,22 @@ export default {
             // console.log($store.getters.getEditing);
             return this.$store.getters.getTaskObject;
         },
-        getIsEditing: function () {
-            if(this.$store.getters.getTaskObject.editTask) {
-                
+        isEditing: function () {
+            console.log(this.$store.getters.getIsEditing);
+            if(this.$store.state.isEditing == true) {
+                console.log("isEditing");
+                let tempEditObj = this.$store.state.taskObject;
+                console.log("tempEditObj");
+                console.log(tempEditObj);
+                this.id = tempEditObj.id;
+                this.title = tempEditObj.title;
+                this.body = tempEditObj.body;
+                this.priority = tempEditObj.priority;
+                this.effort = tempEditObj.effort;
+                // this.type = tempEditObject.type; TODO: add type later
+                return true;
             }
+            return false;
         }
     }
 }
@@ -128,7 +140,7 @@ export default {
     background-color: rgb(235, 255, 244);
 }
 
-#task-description {
+#task-body {
     background-color: rgb(235, 255, 244);
 
 }

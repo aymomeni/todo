@@ -48,8 +48,6 @@
 </template>
 
 <script>
-    //import { EventBus } from '../../eventBus/eventBus';
-
     export default {
         props: {
             todo: {
@@ -62,11 +60,6 @@
                 }
             }
         },
-        data: () => {
-            return {
-                priority_color_green: ""
-            }
-        },
         methods: {
             sendEditTodoToParent(todo) {
                 if(!todo.completed) {
@@ -76,7 +69,7 @@
             },
             sendEditTodoCompletedToParent(todo) {
                 console.log("sendEditTodoCompletedToParent");
-                //EventBus.$emit('edit-task', todo);
+                store.commit("setEditing", true);
                 if(!todo.completed) {
                     todo.completed = true;
                     this.$emit('completedTodo', todo);

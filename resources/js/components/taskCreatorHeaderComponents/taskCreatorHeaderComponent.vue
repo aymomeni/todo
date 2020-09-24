@@ -39,7 +39,14 @@
                             </b-col>
                         </b-row>
                     </b-form-group>
-                    <b-button id="save-button" variant="light" block><strong>Save</strong></b-button>
+                    <b-row>
+                        <b-col class="mr-0">
+                            <b-button variant="success" block><strong>Save</strong></b-button>
+                        </b-col>
+                        <b-col class="ml-0">
+                            <b-button variant="info" block><strong>Clear</strong></b-button>
+                        </b-col>
+                    </b-row>
                 </b-card>
             </b-collapse>
         </div>
@@ -157,7 +164,11 @@ export default {
     font-size: 1.5;
 }
 
-#save-button {
-    color: rgb(116, 204, 153);
+/* #save-button {
+    background-color: #8741bb;
 }
+
+#clear-button {
+    background-color: #8741bb;
+} */
 </style>

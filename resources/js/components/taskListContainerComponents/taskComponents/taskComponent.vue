@@ -9,6 +9,7 @@
                         <p v-bind:class="{'crossed-out': todo.completed}">{{ todo.body }}</p>
                         <p>effort: {{todo.effort}} </p>
                         <p>priority: {{todo.priority}} </p>
+                        <p>type: {{todo.type}} </p>
                     </div>
                 </div>
                 <div class="col-12 col-sm-3">

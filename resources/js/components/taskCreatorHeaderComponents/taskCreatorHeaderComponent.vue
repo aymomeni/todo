@@ -34,16 +34,16 @@
 
                                 <div>
                                     <b-form-select disabled v-model="typeSelected" :options="options" class="mb-3" />
-                                    <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div>
+                                    <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> -->
                                 </div>
                             </b-col>
                         </b-row>
                     </b-form-group>
                     <b-row>
-                        <b-col class="mr-0">
+                        <b-col>
                             <b-button variant="success" block><strong>Save</strong></b-button>
                         </b-col>
-                        <b-col class="ml-0">
+                        <b-col>
                             <b-button variant="info" block><strong>Clear</strong></b-button>
                         </b-col>
                     </b-row>
@@ -121,19 +121,22 @@ export default {
             // console.log($store.getters.getEditing);
             return this.$store.getters.getTaskObject;
         },
-        isEditing: function () {
+        isEditing: function () { // perhaps onEditing is a better name
+            
             console.log(this.$store.getters.getIsEditing);
+            
             if(this.$store.state.isEditing == true) {
+                
                 console.log("isEditing");
                 let tempEditObj = this.$store.state.taskObject;
-                console.log("tempEditObj");
-                console.log(tempEditObj);
+
                 this.id = tempEditObj.id;
                 this.title = tempEditObj.title;
                 this.body = tempEditObj.body;
                 this.priority = tempEditObj.priority;
                 this.effort = tempEditObj.effort;
-                // this.type = tempEditObject.type; TODO: add type later
+                this.type = tempEditObject.type;
+                
                 return true;
             }
             return false;

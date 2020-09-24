@@ -10,6 +10,9 @@
       </div>
       <button type="submit" class="btn btn-dark btn-block">Save</button>
     </form>
+    <PaginationComponent 
+      @fetchTodos="fetchTodos" 
+      :pagination="pagination" />
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
       <TaskComponent 
         @deleteTodo="deleteTodo"
@@ -17,9 +20,6 @@
         @completedTodo="completedTodo"
         :todo="todo" />
     </div>
-    <PaginationComponent 
-      @fetchTodos="fetchTodos" 
-      :pagination="pagination" />
   </div>
 </template>
 
@@ -55,7 +55,8 @@ export default {
         body: '',
         completed: '',
         effort: '',
-        priority: ''
+        priority: '',
+        type: ''
       },
       todo_id: '',
       pagination: {},
@@ -75,7 +76,13 @@ export default {
       fetch(page_url)
         .then((res) => res.json())
         .then((res) => {
+          console.log(res.data);
+          res.data.forEach(task => {
+            // console.log(task);
+            task.type = this.type;
+          });
           this.todos = res.data;
+          // console.log(this.todos);
           vm.makePagination(res.meta, res.links);
         })
         .catch((err) => console.log(err));

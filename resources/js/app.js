@@ -2,14 +2,7 @@ require('./bootstrap');
 import BootstrapVue from 'bootstrap-vue';
 window.Vue = require('vue');
 
-// support for vuex
-import Vuex from 'vuex';
-Vue.use(Vuex);
-import storeData from './store/index';
-
-const store = new Vuex.Store(
-    storeData
-)
+import store from './store/index';
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,5 +26,5 @@ Vue.use(BootstrapVue);
 
 const app = new Vue({
     el: '#app',
-    store // vuex
+    store
 });

@@ -1,7 +1,12 @@
-export default {
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store ({
     state: {
         editing: false,
-        edit: {
+        editTaskObject: {
             id: "",
             title: "",
             body: "",
@@ -11,14 +16,21 @@ export default {
         }
     },
     getters: {
-        getEditing(state) {
-            return state => state.editing;
-        } 
+        getEditing: state => {
+            return state.editing;
+        },
+        getEditTaskObject(state) {
+            return state => state.editTaskObject;
+        }
     },
     mutations: {
         setEditing(state, payload) {
             console.log("got here -- setEditing");
             state.editing = payload;
+        },
+        setEditTaskObject(state, payload) {
+            console.log("got here -- setEditTaskObject");
+            state.editTaskObject = payload;
         }
     },
     actions: {
@@ -26,4 +38,4 @@ export default {
             // maybe worth having all api calls here?
         }
     }
-};
+});

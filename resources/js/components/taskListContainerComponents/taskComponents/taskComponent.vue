@@ -62,6 +62,8 @@
         },
         methods: {
             sendEditTodoToParent(todo) {
+                this.$store.state.editing = true;
+                console.log(this.$store.getters.getEditing);
                 if(!todo.completed) {
                     console.log("sendEditTodoToParent");
                     this.$emit('editTodo', todo);
@@ -69,7 +71,7 @@
             },
             sendEditTodoCompletedToParent(todo) {
                 console.log("sendEditTodoCompletedToParent");
-                store.commit("setEditing", true);
+
                 if(!todo.completed) {
                     todo.completed = true;
                     this.$emit('completedTodo', todo);

@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1" role="tab">
                 <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" :visible="accordionVisible || getEditing" accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" :visible="getEditing" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -107,9 +107,9 @@ export default {
         }
     },
     computed: {
-        getEditing: () => {
+        getEditing: function () {
             // console.log($store.getters.getEditing);
-            // return $store.getters.getEditing;
+            return this.$store.getters.getEditing;
         }
     }
 }

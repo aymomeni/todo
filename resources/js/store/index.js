@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store ({
     state: {
-        editing: false,
-        editTaskObject: {
+        taskObject: {
+            editing: false,
             id: "",
             title: "",
             body: "",
@@ -16,21 +16,18 @@ export default new Vuex.Store ({
         }
     },
     getters: {
-        getEditing: state => {
-            return state.editing;
-        },
-        getEditTaskObject(state) {
-            return state => state.editTaskObject;
+        getTaskObject(state) {
+            return state => state.taskObject;
         }
     },
     mutations: {
-        setEditing(state, payload) {
+        setEditing(state, payload) { // not needed
             console.log("got here -- setEditing");
             state.editing = payload;
         },
-        setEditTaskObject(state, payload) {
+        setTaskObject(state, payload) {
             console.log("got here -- setEditTaskObject");
-            state.editTaskObject = payload;
+            state.taskObject = payload;
         }
     },
     actions: {

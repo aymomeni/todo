@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1" role="tab">
                 <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" :visible="getEditing" accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" :visible="getTaskObject.editing" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -104,12 +104,20 @@ export default {
                 default:
                     return "rgb(64, 192, 128)";
             }
+        },
+        saveTask: () => {
+            // persist the task through api call
         }
     },
     computed: {
-        getEditing: function () {
+        getTaskObject: function () {
             // console.log($store.getters.getEditing);
-            return this.$store.getters.getEditing;
+            return this.$store.getters.getTaskObject;
+        },
+        getIsEditing: function () {
+            if(this.$store.getters.getTaskObject.editTask) {
+                
+            }
         }
     }
 }

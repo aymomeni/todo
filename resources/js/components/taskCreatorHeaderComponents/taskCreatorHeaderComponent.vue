@@ -32,7 +32,7 @@
                                 <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effort }}</strong></div>
 
                                 <div>
-                                    <b-form-select disabled v-model="typeSelected" :options="options" class="mb-3" />
+                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3" />
                                     <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> // for testing -->
                                 </div>
                             </b-col>
@@ -62,7 +62,7 @@ export default {
             body: "",
             priority: 1,
             effort: 3,
-            typeSelected: 'A',
+            typeSelected: 'daily',
                 options: [
                     { value: 'daily', text: 'Daily' },
                     { value: 'goal', text: 'Goal' },
@@ -80,19 +80,6 @@ export default {
     },
     created() {
         console.log(this.$store);
-        // listening to when edit-task is called
-        // EventBus.$on('edit-task', (payload) => {
-        //     console.log("edit-task received");
-        //     this.accordionVisible = true;
-        //     this.title = payload.title;
-        //     this.description = payload.body;
-        //     this.effortValue = payload.effort;
-        //     this.priority = payload.priority;
-        // });
-    },
-    beforeDestroy() {
-        // // cleanup
-        // this.$eventBus.$off('edit-task');
     },
     methods: {
         priorityColor: (priorityValue) => {
@@ -113,37 +100,38 @@ export default {
         },
         saveTask(task) {
             if(this.edit === false) {
-                    // add
-                    fetch(this.base_url, {
-                    method: 'post',
-                    body: JSON.stringify(this.todo),
-                    headers: {
-                        'content-type': 'application/json'
-                    }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.clearThisTodo()
-                        alert('Your task has been added.');
-                        this.fetchTodos();
-                    })
-                } else {
-                    // update
-                    fetch(this.base_url, {
-                    method: 'put',
-                    body: JSON.stringify(this.todo),
-                    headers: {
-                        'content-type': 'application/json'
-                    }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                    this.clearThisTodo();
-                    alert('Your task was edited!');
-                    this.fetchTodos();
-                    })
-                    .catch(err => console.log(err));
+                // add
+                fetch(this.base_url, {
+                method: 'post',
+                body: JSON.stringify(this.todo),
+                headers: {
+                    'content-type': 'application/json'
                 }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.clearThisTodo()
+                    alert('Your task has been added.');
+                    this.fetchTodos();
+                });
+            } else {
+
+                // update
+                fetch(this.base_url, {
+                method: 'put',
+                body: JSON.stringify(this.todo),
+                headers: {
+                    'content-type': 'application/json'
+                }
+                })
+                .then(res => res.json())
+                .then(data => {
+                this.clearThisTodo();
+                alert('Your task was edited!');
+                this.fetchTodos();
+                })
+                .catch(err => console.log(err));
+            }
         },
     },
     computed: {

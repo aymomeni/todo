@@ -5,7 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store ({
     state: {
+        // used when currently editing is going on
         isEditing: false,
+        // used for cross component object transfers
         taskObject: {
             id: "",
             title: "",
@@ -47,7 +49,7 @@ export default new Vuex.Store ({
             // maybe worth having all api calls here?
         },
         addTask() {
-            
+            // maybe worth having all api calls here?
         }
     }
 });

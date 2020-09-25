@@ -6,7 +6,11 @@
             <div class="mt-4">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-lg-3">
-                        <DailyTasksContainerComponent />
+                        <TaskListContainer 
+                            taskListContainerTitle="Daily Tasks"
+                            base_url="/api/todo"
+                            type="todos"
+                        />
                     </div>
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 

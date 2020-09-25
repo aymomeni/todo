@@ -16,7 +16,6 @@
                                     class="mb-2"
                                 > 
                                 </b-form-input>
-
                                 <b-form-textarea
                                     id="task-body"
                                     v-model="body"
@@ -34,7 +33,7 @@
 
                                 <div>
                                     <b-form-select disabled v-model="typeSelected" :options="options" class="mb-3" />
-                                    <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> -->
+                                    <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> // for testing -->
                                 </div>
                             </b-col>
                         </b-row>
@@ -65,9 +64,9 @@ export default {
             effort: 3,
             typeSelected: 'A',
                 options: [
-                    { value: 'A', text: 'Daily' },
-                    { value: 'B', text: 'Goal' },
-                    { value: 'C', text: 'Book or Resource'}
+                    { value: 'daily', text: 'Daily' },
+                    { value: 'goal', text: 'Goal' },
+                    { value: 'bookOrResource', text: 'Book or Resource'}
                 ],
             editTask: {
                 id: "",
@@ -112,9 +111,40 @@ export default {
                     return "rgb(64, 192, 128)";
             }
         },
-        saveTask: () => {
-            // persist the task through api call
-        }
+        saveTask(task) {
+            if(this.edit === false) {
+                    // add
+                    fetch(this.base_url, {
+                    method: 'post',
+                    body: JSON.stringify(this.todo),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.clearThisTodo()
+                        alert('Your task has been added.');
+                        this.fetchTodos();
+                    })
+                } else {
+                    // update
+                    fetch(this.base_url, {
+                    method: 'put',
+                    body: JSON.stringify(this.todo),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                    this.clearThisTodo();
+                    alert('Your task was edited!');
+                    this.fetchTodos();
+                    })
+                    .catch(err => console.log(err));
+                }
+        },
     },
     computed: {
         getTaskObject: function () {
@@ -136,7 +166,7 @@ export default {
                 this.priority = tempEditObj.priority;
                 this.effort = tempEditObj.effort;
                 this.type = tempEditObject.type;
-                
+
                 return true;
             }
             return false;

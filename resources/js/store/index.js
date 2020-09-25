@@ -45,6 +45,9 @@ export default new Vuex.Store ({
     actions: {
         fetchDailyTasks() {
             // maybe worth having all api calls here?
+        },
+        addTask() {
+            
         }
     }
 });

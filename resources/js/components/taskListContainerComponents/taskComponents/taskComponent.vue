@@ -63,7 +63,7 @@
         },
         methods: {
             sendEditTodoToParent(todo) {
-                this.storeTask(todo);
+                this.onEditTask(todo);
                 if(!todo.completed) {
                     console.log("sendEditTodoToParent");
                     this.$emit('editTodo', todo);
@@ -80,9 +80,8 @@
                 console.log("sendDeleteTodoToParent");
                 this.$emit('deleteTodo', id);
             },
-            storeTask(todo) {
-                console.log("storingTask");
-                this.$store.commit("setIsEditing", true);
+            onEditTask(todo) {
+                this.$store.commit("setOnEditTask", true);
                 this.$store.commit("setTaskObject", {
                     id: todo.id,
                     title: todo.title,
@@ -91,7 +90,6 @@
                     effort: todo.effort,
                     type: todo.type
                 });
-                console.log(this.$store);
             }
         }
     }

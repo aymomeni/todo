@@ -4,7 +4,7 @@
             <b-card-header header-tag="header" class="p-1" role="tab">
                 <b-button block v-b-toggle.accordion-1 variant="dark">add | edit</b-button>
             </b-card-header>
-            <b-collapse id="accordion-1" :visible="isEditing" accordion="my-accordion" role="tabpanel">
+            <b-collapse id="accordion-1" :visible="onEditTask" accordion="my-accordion" role="tabpanel">
                 <b-card>
                     <b-form-group>
                         <b-row>
@@ -32,7 +32,7 @@
                                 <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effort }}</strong></div>
 
                                 <div>
-                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3" />
+                                    <b-form-select v-model="type" :options="options" class="mb-3" />
                                     <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> // for testing -->
                                 </div>
                             </b-col>
@@ -43,7 +43,7 @@
                             <b-button variant="success" block><strong>Save</strong></b-button>
                         </b-col>
                         <b-col>
-                            <b-button variant="info" block><strong>Clear</strong></b-button>
+                            <b-button v-on:click="clearForm" variant="info" block><strong>Clear</strong></b-button>
                         </b-col>
                     </b-row>
                 </b-card>
@@ -62,20 +62,12 @@ export default {
             body: "",
             priority: 1,
             effort: 3,
-            typeSelected: 'daily',
-                options: [
-                    { value: 'daily', text: 'Daily' },
-                    { value: 'goal', text: 'Goal' },
-                    { value: 'bookOrResource', text: 'Book or Resource'}
-                ],
-            editTask: {
-                id: "",
-                title: "",
-                body: "",
-                priority: "",
-                effort: "",
-                type: ""
-            }
+            type: 'daily',
+            options: [
+                { value: 'daily', text: 'Daily' },
+                { value: 'goal', text: 'Goal' },
+                { value: 'bookOrResource', text: 'Book or Resource'}
+            ]
         }
     },
     created() {
@@ -98,62 +90,65 @@ export default {
                     return "rgb(64, 192, 128)";
             }
         },
+        clearForm() {
+            this.$store.commit('setOnEditTask', false);
+            this.$store.commit('clearTaskObject');
+            
+            // clear form model
+            this.id = "";
+            this.title = "";
+            this.body = "";
+            this.priority = 1;
+            this.effort = 3;
+            this.type = "daily";
+        },
         saveTask(task) {
-            if(this.edit === false) {
-                // add
-                fetch(this.base_url, {
-                method: 'post',
-                body: JSON.stringify(this.todo),
-                headers: {
-                    'content-type': 'application/json'
-                }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    this.clearThisTodo()
-                    alert('Your task has been added.');
-                    this.fetchTodos();
-                });
-            } else {
+            // if(!this.$store.getters.getOnEditTask) {
+            //     // add
+            //     fetch(this.base_url, {
+            //     method: 'post',
+            //     body: JSON.stringify(this.todo),
+            //         headers: {
+            //             'content-type': 'application/json'
+            //         }
+            //     })
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         this.clearThisTodo()
+            //         alert('Your task has been added.');
+            //         this.fetchTodos();
+            //     });
 
-                // update
-                fetch(this.base_url, {
-                method: 'put',
-                body: JSON.stringify(this.todo),
-                headers: {
-                    'content-type': 'application/json'
-                }
-                })
-                .then(res => res.json())
-                .then(data => {
-                this.clearThisTodo();
-                alert('Your task was edited!');
-                this.fetchTodos();
-                })
-                .catch(err => console.log(err));
-            }
+            // } else {
+            //     // update
+            //     fetch(this.base_url, {
+            //     method: 'put',
+            //     body: JSON.stringify(this.todo),
+            //         headers: {
+            //             'content-type': 'application/json'
+            //         }
+            //     })
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         this.clearThisTodo();
+            //         alert('Your task was edited!');
+            //         this.fetchTodos();
+            //     })
+            //     .catch(err => console.log(err));
+            // }
         },
     },
     computed: {
-        getTaskObject: function () {
-            // console.log($store.getters.getEditing);
-            return this.$store.getters.getTaskObject;
-        },
-        isEditing: function () { // perhaps onEditing is a better name
-            
-            console.log(this.$store.getters.getIsEditing);
-            
-            if(this.$store.state.isEditing == true) {
-                
-                console.log("isEditing");
-                let tempEditObj = this.$store.state.taskObject;
+        onEditTask: function () {
+            if(this.$store.getters.getOnEditTask) {
 
+                let tempEditObj = this.$store.getters.getTaskObject;
                 this.id = tempEditObj.id;
                 this.title = tempEditObj.title;
                 this.body = tempEditObj.body;
                 this.priority = tempEditObj.priority;
                 this.effort = tempEditObj.effort;
-                this.type = tempEditObject.type;
+                this.type = tempEditObj.type;
 
                 return true;
             }

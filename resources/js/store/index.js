@@ -6,50 +6,55 @@ Vue.use(Vuex);
 export default new Vuex.Store ({
     state: {
         // used when currently editing is going on
-        isEditing: false,
-        // used for cross component object transfers
+        onEditTask: false,
+
+        // used for cross component task object transfers
         taskObject: {
-            id: "",
-            title: "",
-            body: "",
-            priority: "",
-            effort: "",
-            type: ""
+            id: null,
+            title: null,
+            body: null,
+            priority: null,
+            effort: null,
+            type: null
         }
     },
     getters: {
-        getIsEditing(state) {
-            return state => state.isEditing;
+        getOnEditTask(state) {
+            return state.onEditTask;
         },
         getTaskObject(state) {
-            return state => state.taskObject;
+            return state.taskObject;
         }
     },
     mutations: {
-        // setEditing(state, payload) { // not needed
-        //     console.log("got here -- setEditing");
-        //     state.editing = payload;
-        // },
-        setIsEditing(state, payload) {
-            state.isEditing = payload;
+        setOnEditTask(state, payload) {
+            state.onEditTask = payload;
         },
         setTaskObject(state, payload) {
-            console.log("got here -- setEditTaskObject");
-            console.log(payload);
             state.taskObject.id = payload.id;
             state.taskObject.title = payload.title;
             state.taskObject.body = payload.body;
             state.taskObject.priority = payload.priority;
             state.taskObject.effort = payload.effort;
             state.taskObject.type = payload.type;
+        },
+        clearTaskObject(state) {
+            state.taskObject = {
+                id: null,
+                title: null,
+                body: null,
+                priority: null,
+                effort: null,
+                type: null
+            }
         }
     },
     actions: {
         fetchDailyTasks() {
-            // maybe worth having all api calls here?
+            // api call?
         },
         addTask() {
-            // maybe worth having all api calls here?
+            // api call?
         }
     }
 });

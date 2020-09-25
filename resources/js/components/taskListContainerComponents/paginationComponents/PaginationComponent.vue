@@ -1,6 +1,6 @@
 <template>
-    <nav class="ml-2 mt-3" aria-label="Page navigation">
-        <ul class="pagination">
+    <nav class="mt-3" aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
             <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
                 <a
                 class="page-link"
@@ -8,8 +8,7 @@
                 aria-label="Previous"
                 @click="sendFetchTodosToParent(pagination.prev_page_url)"
                 >
-                    <span aria-hidden="true">&laquo;</span>
-                    <span>Previous</span>
+                    <span aria-hidden="true">&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</span>
                 </a>
             </li>
             <li class="page-item" v-bind:class="[{disabled: !pagination.next_page_url}]">
@@ -19,8 +18,7 @@
                 aria-label="Next"
                 @click="sendFetchTodosToParent(pagination.next_page_url)"
                 >
-                    <span>Next</span>
-                    <span aria-hidden="true">&raquo;</span>
+                    <span aria-hidden="true">&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
                 </a>
             </li>
         </ul>

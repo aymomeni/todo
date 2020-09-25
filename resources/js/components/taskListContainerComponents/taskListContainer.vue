@@ -1,18 +1,28 @@
 <template>
   <div class="card shadow bg-white rounded">
-    <div class="card-header">
+    <!-- <div class="card-header">
       <h4><i id="fontawesome-icon-header" class="fa fa-check-square" aria-hidden="true"></i> {{ taskListContainerTitle }}</h4>
-    </div>
-    <form @submit.prevent="addTodo" class="mb-3 p-2">
+    </div> -->
+    <!-- <form @submit.prevent="addTodo" class="mb-3 p-2">
       <div class="form-group"> 
         <input type="text" class="form-control mb-1" placeholder="Task Title" v-model="todo.title">
         <textarea class="form-control" placeholder="Task Description" rows="3" v-model="todo.body"></textarea>
       </div>
       <button type="submit" class="btn btn-dark btn-block">Save</button>
-    </form>
-    <PaginationComponent 
-      @fetchTodos="fetchTodos" 
-      :pagination="pagination" />
+    </form> -->
+    <b-card
+      title="Daily Tasks"
+      style="background-color: "
+    >
+      <b-card-text>
+        Some quick example text to build on the card title and make up the bulk of the card's content.
+      </b-card-text>
+      <PaginationComponent 
+        @fetchTodos="fetchTodos" 
+        :pagination="pagination" 
+      />
+    </b-card>
+
     <div class="list-group list-group-flush" v-for="todo in todos" v-bind:key="todo.id">
       <TaskComponent 
         @deleteTodo="deleteTodo"

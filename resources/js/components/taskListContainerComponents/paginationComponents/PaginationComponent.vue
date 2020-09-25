@@ -1,9 +1,9 @@
 <template>
     <nav class="mt-3" aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination mb-0 justify-content-center">
             <li class="page-item" v-bind:class="[{disabled: !pagination.prev_page_url}]">
                 <a
-                class="page-link"
+                class="page-link border-0"
                 href="#"
                 aria-label="Previous"
                 @click="sendFetchTodosToParent(pagination.prev_page_url)"
@@ -13,7 +13,7 @@
             </li>
             <li class="page-item" v-bind:class="[{disabled: !pagination.next_page_url}]">
                 <a
-                class="page-link"
+                class="page-link border-0"
                 href="#"
                 aria-label="Next"
                 @click="sendFetchTodosToParent(pagination.next_page_url)"
@@ -38,3 +38,9 @@
         }
     }
 </script>
+
+<style scoped>
+.page-link {
+    background-color: transparent !important;
+}
+</style>

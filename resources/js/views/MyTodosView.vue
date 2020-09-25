@@ -8,6 +8,7 @@
                     <div class="col-12 col-sm-12 col-lg-3">
                         <TaskListContainer 
                             taskListContainerTitle="Daily Tasks"
+                            taskListHeaderBackgroundColor="#ffbb91"
                             base_url="/api/todo"
                             type="todos"
                         />
@@ -15,6 +16,7 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Goals"
+                            taskListHeaderBackgroundColor="#64958f"
                             base_url="/api/goal"
                             type="goal"
                         />
@@ -22,6 +24,7 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Books or Resources"
+                            taskListHeaderBackgroundColor="#faf3dd"
                             base_url="/api/bookOrResource"
                             type="bookOrResource"
                         />
@@ -29,6 +32,7 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Completed Tasks"
+                            taskListHeaderBackgroundColor="#065c6f"
                             base_url="/api/completedtask"
                             type="completed"
                         />

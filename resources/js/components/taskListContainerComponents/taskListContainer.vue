@@ -12,11 +12,9 @@
     </form> -->
     <b-card
       title="Daily Tasks"
-      style="background-color: "
+      :style="{'background-color': taskListHeaderBackgroundColor, 'color': 'white'}"
     >
-      <b-card-text>
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-      </b-card-text>
+      <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
       <PaginationComponent 
         @fetchTodos="fetchTodos" 
         :pagination="pagination" 
@@ -44,6 +42,10 @@ export default {
   },
   props: {
     taskListContainerTitle: {
+      type: String,
+      required: true
+    },
+    taskListHeaderBackgroundColor: {
       type: String,
       required: true
     },

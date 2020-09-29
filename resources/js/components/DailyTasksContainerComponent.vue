@@ -17,19 +17,14 @@
         @completedTodo="completedTodo"
         :todo="todo" />
     </div>
-    <!-- <PaginationComponent 
-      @fetchTodos="fetchTodos" 
-      :pagination="pagination" /> -->
   </div>
 </template>
 
 <script>
-// import PaginationComponent from "./PaginationComponent";
 import IndividualTaskComponent from "./IndividualTaskComponent";
 
 export default {
   components: {
-    // PaginationComponent,
     IndividualTaskComponent
   },
   data: function () {

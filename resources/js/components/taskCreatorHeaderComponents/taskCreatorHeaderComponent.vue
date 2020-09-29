@@ -54,6 +54,12 @@
 
 <script>
 export default {
+    props: {
+        urlTypeMap: {
+            type: Object,
+            required: true
+        }
+    },
     data: () => {
         return {
             accordionExpanded: false,

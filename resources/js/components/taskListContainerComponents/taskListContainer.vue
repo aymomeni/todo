@@ -11,13 +11,14 @@
       <button type="submit" class="btn btn-dark btn-block">Save</button>
     </form> -->
     <b-card
-      title="Daily Tasks"
+      :title=taskListContainerTitle
       :style="{'background-color': taskListHeaderBackgroundColor, 'color': 'white'}"
     >
       <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
       <PaginationComponent 
         @fetchTodos="fetchTodos" 
-        :pagination="pagination" 
+        :pagination="pagination"
+        :paginationArrowColor=paginationArrowColor 
       />
     </b-card>
 
@@ -46,6 +47,10 @@ export default {
       required: true
     },
     taskListHeaderBackgroundColor: {
+      type: String,
+      required: true
+    },
+    paginationArrowColor: {
       type: String,
       required: true
     },

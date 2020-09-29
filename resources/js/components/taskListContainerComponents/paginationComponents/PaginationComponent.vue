@@ -15,6 +15,7 @@
                 <a
                 class="page-link border-0"
                 href="#"
+                :style="{'color': paginationArrowColor }"
                 aria-label="Next"
                 @click="sendFetchTodosToParent(pagination.next_page_url)"
                 >
@@ -29,6 +30,9 @@
         props: {
             pagination: {
                 type: Object
+            },
+            paginationArrowColor: {
+                type: String
             }
         },
         methods: {

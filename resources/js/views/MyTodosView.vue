@@ -1,14 +1,15 @@
 <template>
     <div>
         <NavbarComponent />
-        <div class="daily-task-view">
+        <div class="daily-task-view m-4">
             <taskCreatorHeaderComponent class="mt-2" />
             <div class="mt-4">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-lg-3">
                         <TaskListContainer 
                             taskListContainerTitle="Daily Tasks"
-                            taskListHeaderBackgroundColor="#ffbb91"
+                            taskListHeaderBackgroundColor="#726a95"
+                            paginationArrowColor="#16213e"
                             base_url="/api/todo"
                             type="todos"
                         />
@@ -16,7 +17,8 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Goals"
-                            taskListHeaderBackgroundColor="#64958f"
+                            taskListHeaderBackgroundColor="#709fb0"
+                            paginationArrowColor="#16213e"
                             base_url="/api/goal"
                             type="goal"
                         />
@@ -24,7 +26,8 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Books or Resources"
-                            taskListHeaderBackgroundColor="#faf3dd"
+                            taskListHeaderBackgroundColor="#a0c1b8"
+                            paginationArrowColor="#16213e"
                             base_url="/api/bookOrResource"
                             type="bookOrResource"
                         />
@@ -32,7 +35,8 @@
                     <div class="col-12 col-sm-12 col-lg-3">               
                         <TaskListContainer 
                             taskListContainerTitle="Completed Tasks"
-                            taskListHeaderBackgroundColor="#065c6f"
+                            taskListHeaderBackgroundColor="#637373"
+                            paginationArrowColor="#16213e"
                             base_url="/api/completedtask"
                             type="completed"
                         />

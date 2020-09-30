@@ -32,7 +32,7 @@
                                 <div class="mb-3" id="effort-label">effort&nbsp;&nbsp;<strong>{{ effort }}</strong></div>
 
                                 <div>
-                                    <b-form-select v-model="type" :options="options" class="mb-3" />
+                                    <b-form-select v-model="typeSelected" :options="options" class="mb-3" />
                                     <!-- <div class="mt-3">Selected: <strong>{{ typeSelected }}</strong></div> // for testing -->
                                 </div>
                             </b-col>
@@ -40,7 +40,7 @@
                     </b-form-group>
                     <b-row>
                         <b-col>
-                            <b-button variant="success" block><strong>Save</strong></b-button>
+                            <b-button variant="success" :click="saveTask()" block><strong>Save</strong></b-button>
                         </b-col>
                         <b-col>
                             <b-button v-on:click="clearForm" variant="info" block><strong>Clear</strong></b-button>
@@ -68,7 +68,7 @@ export default {
             body: "",
             priority: 1,
             effort: 3,
-            type: 'daily',
+            typeSelected: 'daily',
             options: [
                 { value: 'daily', text: 'Daily' },
                 { value: 'goal', text: 'Goal' },
@@ -77,7 +77,7 @@ export default {
         }
     },
     created() {
-        console.log(this.$store);
+        console.log(this.urlTypeMap)
     },
     methods: {
         priorityColor: (priorityValue) => {
@@ -108,28 +108,45 @@ export default {
             this.effort = 3;
             this.type = "daily";
         },
-        saveTask(task) {
+        saveTask() {
             // if(!this.$store.getters.getOnEditTask) {
-            //     // add
-            //     fetch(this.base_url, {
-            //     method: 'post',
-            //     body: JSON.stringify(this.todo),
-            //         headers: {
-            //             'content-type': 'application/json'
-            //         }
-            //     })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         this.clearThisTodo()
-            //         alert('Your task has been added.');
-            //         this.fetchTodos();
-            //     });
+
+                console.log("saveTask");
+                console.log(this.$store.getters.getOnEditTask);
+
+                let task = {
+                    id: this.id,
+                    title: this.title,
+                    body: this.body,
+                    priority: this.priority,
+                    effort: this.effort,
+                    type: this.typeSelected
+                };
+
+                let url = this.selectUrlBasedOnType(task);
+
+                console.log(task);
+            // }
+                // // add
+                // fetch(this.base_url, {
+                // method: 'post',
+                // body: JSON.stringify(task),
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     }
+                // })
+                // .then(res => res.json())
+                // .then(data => {
+                //     this.clearThisTodo()
+                //     alert('Your task has been added.');
+                //     this.fetchTodos();
+                // });
 
             // } else {
             //     // update
             //     fetch(this.base_url, {
             //     method: 'put',
-            //     body: JSON.stringify(this.todo),
+            //     body: JSON.stringify(task),
             //         headers: {
             //             'content-type': 'application/json'
             //         }
@@ -143,6 +160,9 @@ export default {
             //     .catch(err => console.log(err));
             // }
         },
+        selectUrlBasedOnType(task) {
+            return this.urlTypeMap[task.type];
+        }
     },
     computed: {
         onEditTask: function () {
